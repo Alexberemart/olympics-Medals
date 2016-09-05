@@ -1,0 +1,12 @@
+<div layout="column">
+    <md-toolbar ng-if="true">
+        <div class="md-toolbar-tools" layout-align="center center">
+            <h3 layout-align="center end">
+                <span>{{result.event}}</span>
+            </h3>
+        </div>
+    </md-toolbar>
+    <md-content flex>
+        <athlete-directive ng-repeat="medalInfo in result.medals" medal="medalInfo"></athlete-directive>
+    </md-content>
+</div>

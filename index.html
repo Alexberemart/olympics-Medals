@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Olympics Results</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet"
+          href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link rel="stylesheet" href="assets/app.css"/>
+
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+
+</head>
+
+<body ng-app="starterApp" ng-cloak layout="column" ng-controller="UserController as ul">
+<!-- Container #1 (see wireframe) -->
+<md-toolbar layout="row">
+    <h1>Angular Material - Starter App</h1>
+</md-toolbar>
+
+<!-- Container #2 -->
+<div flex layout="row">
+
+    <md-sidenav ng-click="ul.toggleList()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
+                class="md-whiteframe-z2">
+        <md-list>
+            <md-list-item ng-repeat="it in ul.users">
+                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+                    <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+                    {{it.name}}
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+
+    <md-content flex layout="column" id="content">
+        <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+        <h2>{{ul.selected.name}}</h2>
+        <p>{{ul.selected.content}}</p>
+
+        <form ng-submit="$event.preventDefault()" name="searchForm">
+            <md-autocomplete flex="" required=""
+                             md-input-name="autocompleteField"
+                             md-input-minlength="2"
+                             md-input-maxlength="18"
+                             md-no-cache="ul.noCache"
+                             md-selected-item="ul.selectedItem"
+                             md-search-text="ul.searchText"
+                             md-items="item in ul.querySearch(ul.searchText)"
+                             md-item-text="item.name"
+                             md-floating-label="Favorite state">
+                <md-item-template>
+                    <span md-highlight-text="ul.searchText">{{item.name}}</span>
+                </md-item-template>
+                <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+                    <div ng-message="required">You <b>must</b> have a favorite state.</div>
+                    <div ng-message="minlength">Your entry is not long enough.</div>
+                    <div ng-message="maxlength">Your entry is too long.</div>
+                </div>
+            </md-autocomplete>
+
+            <!--<PRE>{{ul.selectedItem}}</PRE>-->
+            <!--<PRE>{{ul.searchText}}</PRE>-->
+            <!--<PRE>{{ul.noCache}}</PRE>-->
+            <!--<PRE>{{searchForm.autocompleteField.$error}}</PRE>-->
+            <!--<PRE>{{searchForm.autocompleteField.$error.required}}</PRE>-->
+            <!--<PRE>{{searchForm.autocompleteField.$touched}}</PRE>-->
+        </form>
+
+        <div layout="row">
+            <md-switch ng-model="ul.maleResults" aria-label="Switch 2" class="md-primary">
+                Male Results
+            </md-switch>
+            <md-switch ng-model="ul.femaleResults" aria-label="Switch 2" class="md-danger">
+                Female Results
+            </md-switch>
+        </div>
+
+        <pre>{{ul.maleResults}}</pre>
+        <pre>{{ul.femaleResults}}</pre>
+        <pre>{{ul.medals}}</pre>
+
+        <md-content>
+            <md-list>
+                <div layout="column" layout-gt-md="row" layout-wrap>
+                    <md-list-item class="md-2-line"
+                                  ng-repeat="resultInfo in ul.medals | filter:{ sport: ul.searchText}">
+                        <result-directive result="resultInfo"></result-directive>
+                    </md-list-item>
+                </div>
+            </md-list>
+        </md-content>
+
+    </md-content>
+
+</div>
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+<script src="./src/main/webapp/app/src/users/Users.js"></script>
+<script src="./src/main/webapp/app/src/users/UserController.js"></script>
+<script src="./src/main/webapp/app/src/users/resultService.js"></script>
+<script src="./src/main/webapp/app/src/directives/athleteDirective.js"></script>
+<script src="./src/main/webapp/app/src/directives/resultDirective.js"></script>
+
+<!-- Your application bootstrap  -->
+<script type="text/javascript">
+
+    angular
+            .module('starterApp', ['ngMaterial', 'ngMessages', 'users'])
+            .config(function ($mdThemingProvider, $mdIconProvider) {
+
+                $mdIconProvider
+                        .defaultIconSet("./assets/svg/avatars.svg", 128)
+                        .icon("menu", "./assets/svg/menu.svg", 24)
+                        .icon("share", "./assets/svg/share.svg", 24)
+                        .icon("google_plus", "./assets/svg/google_plus.svg", 512)
+                        .icon("hangouts", "./assets/svg/hangouts.svg", 512)
+                        .icon("twitter", "./assets/svg/twitter.svg", 512)
+                        .icon("phone", "./assets/svg/phone.svg", 512);
+
+                $mdThemingProvider.theme('default')
+                        .primaryPalette('blue')
+                        .accentPalette('red');
+
+            });
+
+</script>
+
+</body>
+</html>
