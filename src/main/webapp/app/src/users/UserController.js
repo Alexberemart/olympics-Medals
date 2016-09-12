@@ -7,6 +7,10 @@
             UserController
         ]);
 
+    angular
+        .module('users')
+        .filter('resultFilter', resultFilter);
+
     /**
      * Main Controller for the Angular Material Starter App
      * @param $scope
@@ -23,6 +27,29 @@
         self.toggleList = toggleUsersList;
         self.querySearch = querySearch;
         self.maleResults = false;
+        self.genderValues = [
+            {
+                id: 1,
+                name: 'all',
+                primary: true,
+                maleResults: true,
+                femaleResults: true
+            },
+            {
+                id: 2,
+                name: 'only male',
+                maleResults: true,
+                femaleResults: false
+            }
+            ,
+            {
+                id: 3,
+                name: 'only female',
+                maleResults: false,
+                femaleResults: true
+            }
+        ];
+        self.selectedGenderId = self.genderValues[0].id;
 
         // Load all registered users
 
@@ -84,6 +111,51 @@
             };
 
         }
+    }
+
+    function resultFilter() {
+        return function (items, searchText, selectedGenderID, genderValues) {
+
+            if (!!selectedGenderID) {
+                // var selectedGender = JSON.parse(selectedGenderID);
+                var selectedGender = genderValues.filter(function (element) {
+                    return element.id === parseInt(selectedGenderID);
+                })[0]
+            }
+
+            if (!items) {
+                return null;
+            }
+
+
+            if (!!searchText) {
+                var resultsFilteredBySport = items.filter(function (element) {
+                    return element.sport.includes(searchText);
+                });
+            }
+            else{
+                var resultsFilteredBySport = items;
+            }
+
+            return resultsFilteredBySport.filter(function (element) {
+
+                if (!selectedGender) {
+                    return false;
+                }
+
+                if (!!element.male) {
+                    if (selectedGender.maleResults && element.male) {
+                        return true;
+                    }
+                }
+                if (!!element.female) {
+                    if (selectedGender.femaleResults && element.female) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        };
 
     }
 

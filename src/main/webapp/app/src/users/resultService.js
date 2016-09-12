@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('users')
-        .service('resultService', ['$q', resultService]);
+        .service('resultService', ['$q', 'countryService', resultService]);
 
     /**
      * Users DataService
@@ -12,7 +12,7 @@
      * @returns {{loadAll: Function}}
      * @constructor
      */
-    function resultService($q) {
+    function resultService($q, countryService) {
 
         var results = [
             {
@@ -22,19 +22,19 @@
                 female: false,
                 medals: [
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 1,
                         name: 'Usain Bolt',
-                        photoUrl: './src/main/webapp/app/images/JAMA0001.gif'
+                        countryId: 1
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-silver-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 2,
                         name: 'Justin Gatlin',
-                        photoUrl: './src/main/webapp/app/images/UNST0001.gif'
+                        countryId: 2
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-bronze-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 3,
                         name: 'Andre De Grasse',
-                        photoUrl: './src/main/webapp/app/images/CANA0001.gif'
+                        countryId: 3
                     }
                 ]
             },
@@ -45,19 +45,42 @@
                 female: false,
                 medals: [
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 1,
                         name: 'Usain Bolt',
-                        photoUrl: './src/main/webapp/app/images/JAMA0001.gif'
+                        countryId: 1
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-silver-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 2,
                         name: 'Andre De Grasse',
-                        photoUrl: './src/main/webapp/app/images/CANA0001.gif'
+                        countryId: 3
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-bronze-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 3,
                         name: 'Christophe Lemaitre',
-                        photoUrl: './src/main/webapp/app/images/FRAN0001.gif'
+                        countryId: 4
+                    }
+                ]
+            },
+            {
+                sport: 'Athletics',
+                event: '100 m.',
+                male: false,
+                female: true,
+                medals: [
+                    {
+                        medalId: 1,
+                        name: 'Elaine Thompson',
+                        countryId: 1
+                    },
+                    {
+                        medalId: 2,
+                        name: 'Tori Bowie',
+                        countryId: 2
+                    },
+                    {
+                        medalId: 3,
+                        name: 'Shelly-Ann Fraser-Pryce',
+                        countryId: 1
                     }
                 ]
             },
@@ -68,24 +91,24 @@
                 female: false,
                 medals: [
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 1,
                         name: 'Beslan Mudranov',
-                        photoUrl: './src/main/webapp/app/images/RUSS0001.gif'
+                        countryId: 5
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-silver-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 2,
                         name: 'Yeldos Smetov',
-                        photoUrl: './src/main/webapp/app/images/KAZK0001.gif'
+                        countryId: 6
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-bronze-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 3,
                         name: 'Naohisa Takato',
-                        photoUrl: './src/main/webapp/app/images/JAPA0001.gif'
+                        countryId: 7
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-bronze-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 3,
                         name: 'Diyorbek Urozboev',
-                        photoUrl: './src/main/webapp/app/images/UZBK0001.gif'
+                        countryId: 8
                     }
                 ]
             },
@@ -96,157 +119,65 @@
                 female: true,
                 medals: [
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 1,
                         name: 'Pernille Blume',
-                        photoUrl: './src/main/webapp/app/images/RUSS0001.gif'
+                        countryId: 9
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-silver-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 2,
                         name: 'Simone Manuel',
-                        photoUrl: './src/main/webapp/app/images/KAZK0001.gif'
+                        countryId: 2
                     },
                     {
-                        medal: './src/main/webapp/app/images/pict--olympic-medal,-bronze-winter-olympics-pictograms-vector-stencils-library.png',
+                        medalId: 3,
                         name: 'Aliaksandra Herasimenia',
-                        photoUrl: './src/main/webapp/app/images/JAPA0001.gif'
+                        countryId: 10
                     }
                 ]
             },
             {
-                sport: 'Athletics',
-                event: '100 m.',
-                male: true,
-                female: false,
+                sport: 'Swimming',
+                event: '100 m freestyle',
+                male: false,
+                female: true,
                 medals: [
                     {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
+                        medalId: 1,
+                        name: 'Simone Manuel',
+                        countryId: 2
                     },
                     {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
+                        medalId: 1,
+                        name: 'Penny Oleksiak',
+                        countryId: 3
                     },
                     {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    }
-                ]
-            },
-            {
-                sport: 'Athletics',
-                event: '100 m.',
-                male: true,
-                female: false,
-                medals: [
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    },
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    },
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    }
-                ]
-            },
-            {
-                sport: 'Athletics',
-                event: '100 m.',
-                male: true,
-                female: false,
-                medals: [
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    },
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    },
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    }
-                ]
-            },
-            {
-                sport: 'Athletics',
-                event: '100 m.',
-                male: true,
-                female: false,
-                medals: [
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    },
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    },
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    }
-                ]
-            },
-            {
-                sport: 'Athletics',
-                event: '100 m.',
-                male: true,
-                female: false,
-                medals: [
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    },
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
-                    },
-                    {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
+                        medalId: 3,
+                        name: 'Sarah Sjöström',
+                        countryId: 11
                     }
                 ]
             },
             {
                 sport: 'Archery',
-                event: '100 m.',
+                event: 'Men\'s individual',
                 male: true,
                 female: false,
                 medals: [
                     {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
+                        medalId: 1,
+                        name: 'Ku Bon-chan',
+                        countryId: 12
                     },
                     {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
+                        medalId: 2,
+                        name: 'Jean-Charles Valladont',
+                        countryId: 4
                     },
                     {
-                        medal: './src/main/webapp/app/images/goldMedal.jpg',
-                        name: 'Alejandro',
-                        photoUrl: './src/main/webapp/app/images/spain.png'
+                        medalId: 3,
+                        name: 'Brady Ellison',
+                        countryId: 2
                     }
                 ]
             }
@@ -277,6 +208,12 @@
             {
                 value: 'george duke',
                 name: 'Archery',
+                avatar: 'svg-2',
+                content: 'contenido de rio 2016'
+            },
+            {
+                value: 'george duke',
+                name: 'Swimming',
                 avatar: 'svg-2',
                 content: 'contenido de rio 2016'
             }

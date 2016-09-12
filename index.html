@@ -71,6 +71,19 @@
                 </div>
             </md-autocomplete>
 
+            <md-radio-group ng-model="ul.selectedGenderId">
+
+                <md-radio-button class="md-2-line"
+                                 ng-repeat="genderValue in ul.genderValues"
+                                 value="{{genderValue.id}}"
+                                 ng-class="{'md-primary' : genderValue.primary}">
+                    {{genderValue.name}}
+                </md-radio-button>
+
+            </md-radio-group>
+
+            <md-divider md-inset></md-divider>
+
             <!--<PRE>{{ul.selectedItem}}</PRE>-->
             <!--<PRE>{{ul.searchText}}</PRE>-->
             <!--<PRE>{{ul.noCache}}</PRE>-->
@@ -79,24 +92,11 @@
             <!--<PRE>{{searchForm.autocompleteField.$touched}}</PRE>-->
         </form>
 
-        <div layout="row">
-            <md-switch ng-model="ul.maleResults" aria-label="Switch 2" class="md-primary">
-                Male Results
-            </md-switch>
-            <md-switch ng-model="ul.femaleResults" aria-label="Switch 2" class="md-danger">
-                Female Results
-            </md-switch>
-        </div>
-
-        <pre>{{ul.maleResults}}</pre>
-        <pre>{{ul.femaleResults}}</pre>
-        <pre>{{ul.medals}}</pre>
-
         <md-content>
             <md-list>
                 <div layout="column" layout-gt-md="row" layout-wrap>
                     <md-list-item class="md-2-line"
-                                  ng-repeat="resultInfo in ul.medals | filter:{ sport: ul.searchText}">
+                                  ng-repeat="resultInfo in ul.medals | resultFilter:ul.searchText:ul.selectedGenderId:ul.genderValues">
                         <result-directive result="resultInfo"></result-directive>
                     </md-list-item>
                 </div>
@@ -119,14 +119,21 @@
 <script src="./src/main/webapp/app/src/users/Users.js"></script>
 <script src="./src/main/webapp/app/src/users/UserController.js"></script>
 <script src="./src/main/webapp/app/src/users/resultService.js"></script>
+
 <script src="./src/main/webapp/app/src/directives/athleteDirective.js"></script>
 <script src="./src/main/webapp/app/src/directives/resultDirective.js"></script>
+
+<script src="./src/main/webapp/app/src/country/countries.js"></script>
+<script src="./src/main/webapp/app/src/country/countryService.js"></script>
+
+<script src="./src/main/webapp/app/src/medal/medals.js"></script>
+<script src="./src/main/webapp/app/src/medal/medalService.js"></script>
 
 <!-- Your application bootstrap  -->
 <script type="text/javascript">
 
     angular
-            .module('starterApp', ['ngMaterial', 'ngMessages', 'users'])
+            .module('starterApp', ['ngMaterial', 'ngMessages', 'users', 'countries', 'medals'])
             .config(function ($mdThemingProvider, $mdIconProvider) {
 
                 $mdIconProvider
