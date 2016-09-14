@@ -40,10 +40,6 @@ md-list-item > button {
 
 /* Primary content area */
 
-#content {
-  overflow: hidden;
-}
-
 #content  {
   padding-left: 40px;
   padding-right: 40px;
@@ -110,7 +106,6 @@ md-toolbar h1 {
   border: 1px solid #ddd;
   border-radius: 50%;
   display: inline-block;
-  overflow: hidden;
   margin: 0px;
   vertical-align: middle;
   zoom:0.70;
@@ -118,7 +113,6 @@ md-toolbar h1 {
   -webkit-transform: scale(0.70);
   -moz-transform:scale(0.70);
 }
-
 
 md-bottom-sheet  md-icon {
   margin-right:20px;

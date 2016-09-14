@@ -27,11 +27,11 @@
 <body ng-app="starterApp" ng-cloak layout="column" ng-controller="UserController as ul">
 <!-- Container #1 (see wireframe) -->
 <md-toolbar layout="row">
-    <h1>Angular Material - Starter App</h1>
+    <h1>Olympic-Medals</h1>
 </md-toolbar>
 
 <!-- Container #2 -->
-<div flex layout="row">
+<md-content flex layout="row">
 
     <md-sidenav ng-click="ul.toggleList()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
                 class="md-whiteframe-z2">
@@ -46,27 +46,30 @@
     </md-sidenav>
 
     <md-content flex layout="column" id="content">
+
+        <!--<md-content flex layout="row">-->
         <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
         <h2>{{ul.selected.name}}</h2>
-        <p>{{ul.selected.content}}</p>
+        <!--</md-content>-->
 
+        <p>{{ul.selected.content}}</p>
         <form ng-submit="$event.preventDefault()" name="searchForm">
             <md-autocomplete flex="" required=""
                              md-input-name="autocompleteField"
-                             md-input-minlength="2"
+                             md-input-minlength="1"
                              md-input-maxlength="18"
                              md-no-cache="ul.noCache"
                              md-selected-item="ul.selectedItem"
                              md-search-text="ul.searchText"
                              md-items="item in ul.querySearch(ul.searchText)"
                              md-item-text="item.name"
-                             md-floating-label="Favorite state">
+                             md-floating-label="Spot Filter">
                 <md-item-template>
                     <span md-highlight-text="ul.searchText">{{item.name}}</span>
                 </md-item-template>
                 <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-                    <div ng-message="required">You <b>must</b> have a favorite state.</div>
-                    <div ng-message="minlength">Your entry is not long enough.</div>
+                    <!--<div ng-message="required">You <b>must</b> have a favorite state.</div>-->
+                    <!--<div ng-message="minlength">Your entry is not long enough.</div>-->
                     <div ng-message="maxlength">Your entry is too long.</div>
                 </div>
             </md-autocomplete>
@@ -92,66 +95,64 @@
             <!--<PRE>{{searchForm.autocompleteField.$touched}}</PRE>-->
         </form>
 
-        <md-content>
-            <md-list>
-                <div layout="column" layout-gt-md="row" layout-wrap>
-                    <md-list-item class="md-2-line"
-                                  ng-repeat="resultInfo in ul.medals | resultFilter:ul.searchText:ul.selectedGenderId:ul.genderValues">
-                        <result-directive result="resultInfo"></result-directive>
-                    </md-list-item>
-                </div>
-            </md-list>
-        </md-content>
+        <md-list>
+            <div layout="column" layout-gt-md="row" layout-wrap>
+                <md-list-item class="md-2-line"
+                              ng-repeat="resultInfo in ul.medals | resultFilter:ul.searchText:ul.selectedGenderId:ul.genderValues">
+                    <result-directive result="resultInfo"></result-directive>
+                </md-list-item>
+            </div>
+        </md-list>
 
     </md-content>
 
-</div>
+    </div>
 
-<!-- Angular Material requires Angular.js Libraries -->
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-<!-- Angular Material Library -->
-<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
 
-<script src="./src/main/webapp/app/src/users/Users.js"></script>
-<script src="./src/main/webapp/app/src/users/UserController.js"></script>
-<script src="./src/main/webapp/app/src/users/resultService.js"></script>
+    <script src="./src/main/webapp/app/src/users/Users.js"></script>
+    <script src="./src/main/webapp/app/src/users/UserController.js"></script>
+    <script src="./src/main/webapp/app/src/users/resultService.js"></script>
 
-<script src="./src/main/webapp/app/src/directives/athleteDirective.js"></script>
-<script src="./src/main/webapp/app/src/directives/resultDirective.js"></script>
+    <script src="./src/main/webapp/app/src/directives/athleteDirective.js"></script>
+    <script src="./src/main/webapp/app/src/directives/resultDirective.js"></script>
 
-<script src="./src/main/webapp/app/src/country/countries.js"></script>
-<script src="./src/main/webapp/app/src/country/countryService.js"></script>
+    <script src="./src/main/webapp/app/src/country/countries.js"></script>
+    <script src="./src/main/webapp/app/src/country/countryService.js"></script>
 
-<script src="./src/main/webapp/app/src/medal/medals.js"></script>
-<script src="./src/main/webapp/app/src/medal/medalService.js"></script>
+    <script src="./src/main/webapp/app/src/medal/medals.js"></script>
+    <script src="./src/main/webapp/app/src/medal/medalService.js"></script>
 
-<!-- Your application bootstrap  -->
-<script type="text/javascript">
+    <!-- Your application bootstrap  -->
+    <script type="text/javascript">
 
-    angular
-            .module('starterApp', ['ngMaterial', 'ngMessages', 'users', 'countries', 'medals'])
-            .config(function ($mdThemingProvider, $mdIconProvider) {
+        angular
+                .module('starterApp', ['ngMaterial', 'ngMessages', 'users', 'countries', 'medals'])
+                .config(function ($mdThemingProvider, $mdIconProvider) {
 
-                $mdIconProvider
-                        .defaultIconSet("./assets/svg/avatars.svg", 128)
-                        .icon("menu", "./assets/svg/menu.svg", 24)
-                        .icon("share", "./assets/svg/share.svg", 24)
-                        .icon("google_plus", "./assets/svg/google_plus.svg", 512)
-                        .icon("hangouts", "./assets/svg/hangouts.svg", 512)
-                        .icon("twitter", "./assets/svg/twitter.svg", 512)
-                        .icon("phone", "./assets/svg/phone.svg", 512);
+                    $mdIconProvider
+                            .defaultIconSet("./assets/svg/avatars.svg", 128)
+                            .icon("menu", "./assets/svg/menu.svg", 24)
+                            .icon("share", "./assets/svg/share.svg", 24)
+                            .icon("google_plus", "./assets/svg/google_plus.svg", 512)
+                            .icon("hangouts", "./assets/svg/hangouts.svg", 512)
+                            .icon("twitter", "./assets/svg/twitter.svg", 512)
+                            .icon("phone", "./assets/svg/phone.svg", 512);
 
-                $mdThemingProvider.theme('default')
-                        .primaryPalette('blue')
-                        .accentPalette('red');
+                    $mdThemingProvider.theme('default')
+                            .primaryPalette('blue')
+                            .accentPalette('red');
 
-            });
+                });
 
-</script>
-
+    </script>
+</md-content>
 </body>
 </html>
