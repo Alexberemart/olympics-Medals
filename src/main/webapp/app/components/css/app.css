@@ -123,3 +123,10 @@ span.name {
   font-size:1.1em;
   padding-left:5px;
 }
+
+button.addNew{
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  margin: 25px;
+}
