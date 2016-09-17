@@ -1,18 +1,48 @@
 <md-dialog
         aria-label="Mango (Fruit)">
+
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Mango (Fruit)</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    <md-icon md-font-icon="fa-times" class="fa" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
 
         <md-dialog-content>
+
             <div class="md-dialog-content">
+
+                <div>
+                    <md-input-container>
+                        <label>Sport</label>
+                        <input ng-model="result.sport">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Event</label>
+                        <input ng-model="user.email" type="email">
+                    </md-input-container>
+                </div>
+
+                <md-divider md-inset></md-divider>
+
+                <md-radio-group ng-model="ul.selectedGenderId">
+
+                    <md-radio-button class="md-2-line"
+                                     ng-repeat="genderValue in genderValues"
+                                     value="{{genderValue.id}}"
+                                     ng-class="{'md-primary' : genderValue.primary}">
+                        {{genderValue.name}}
+                    </md-radio-button>
+
+                </md-radio-group>
+
+                <md-divider md-inset></md-divider>
+
                 <h2>Using .md-dialog-content class that sets the padding as the spec</h2>
                 <p>
                     The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous

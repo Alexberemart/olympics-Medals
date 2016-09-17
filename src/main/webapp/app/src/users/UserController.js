@@ -3,7 +3,7 @@
     angular
         .module('users')
         .controller('UserController', [
-            'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog',
+            'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog', 'genderService',
             UserController
         ]);
 
@@ -18,7 +18,7 @@
      * @param avatarsService
      * @constructor
      */
-    function UserController(resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog) {
+    function UserController(resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService) {
         var self = this;
 
         self.selected = null;
@@ -27,28 +27,7 @@
         self.toggleList = toggleUsersList;
         self.querySearch = querySearch;
         self.maleResults = false;
-        self.genderValues = [
-            {
-                id: 1,
-                name: 'all',
-                primary: true,
-                maleResults: true,
-                femaleResults: true
-            },
-            {
-                id: 2,
-                name: 'only male',
-                maleResults: true,
-                femaleResults: false
-            }
-            ,
-            {
-                id: 3,
-                name: 'only female',
-                maleResults: false,
-                femaleResults: true
-            }
-        ];
+        self.genderValues = genderService.getGenderValues();
         self.selectedGenderId = self.genderValues[0].id;
 
         // Load all registered users
@@ -128,7 +107,10 @@
                 });
         };
 
-        function DialogController($scope, $mdDialog) {
+        function DialogController($scope, $mdDialog, genderService) {
+
+            $scope.genderValues = genderService.getGenderValues();
+
             $scope.hide = function () {
                 $mdDialog.hide();
             };
@@ -138,6 +120,7 @@
             };
 
             $scope.answer = function (answer) {
+                console.log($scope.result);
                 $mdDialog.hide(answer);
             };
         };
