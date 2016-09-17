@@ -3,7 +3,7 @@
     angular
         .module('users')
         .controller('UserController', [
-            'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter',
+            'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog',
             UserController
         ]);
 
@@ -18,7 +18,7 @@
      * @param avatarsService
      * @constructor
      */
-    function UserController(resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter) {
+    function UserController(resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog) {
         var self = this;
 
         self.selected = null;
@@ -111,6 +111,36 @@
             };
 
         }
+
+        self.showAdvanced = function(ev) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'app/src/result/results.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: false
+            })
+                .then(function(answer) {
+                    self.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                    self.status = 'You cancelled the dialog.';
+                });
+        };
+
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
+
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+        };
     }
 
     function resultFilter() {
