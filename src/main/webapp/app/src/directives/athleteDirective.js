@@ -10,7 +10,7 @@
             scope: {
                 medal: '=medal'
             },
-            templateUrl: './src/main/webapp/app/src/directives/athleteDirective.html',
+            templateUrl: 'app/src/directives/athleteDirective.html',
             link: function(scope) {
                 scope.getMedal = function(){
                     return medalService.getImageUrl(this.medal.medalId);

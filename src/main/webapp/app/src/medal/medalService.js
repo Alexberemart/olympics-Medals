@@ -10,17 +10,17 @@
             {
                 id : 1,
                 name: 'Gold',
-                imageUrl: './src/main/webapp/app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png'
+                imageUrl: 'app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png'
             },
             {
                 id : 2,
                 name: 'Silver',
-                imageUrl: './src/main/webapp/app/images/pict--olympic-medal,-silver-winter-olympics-pictograms-vector-stencils-library.png'
+                imageUrl: 'app/images/pict--olympic-medal,-silver-winter-olympics-pictograms-vector-stencils-library.png'
             },
             {
                 id : 3,
                 name: 'Bronze',
-                imageUrl: './src/main/webapp/app/images/pict--olympic-medal,-bronze-winter-olympics-pictograms-vector-stencils-library.png'
+                imageUrl: 'app/images/pict--olympic-medal,-bronze-winter-olympics-pictograms-vector-stencils-library.png'
             }
         ];
 

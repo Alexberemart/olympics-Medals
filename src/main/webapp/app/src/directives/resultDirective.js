@@ -10,7 +10,7 @@
             scope: {
                 result: '=result'
             },
-            templateUrl: './src/main/webapp/app/src/directives/resultDirective.html'
+            templateUrl: 'app/src/directives/resultDirective.html'
         };
     }
 

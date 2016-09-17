@@ -1,0 +1,27 @@
+{
+  "name": "olympics-medals",
+  "version": "0.0.0",
+  "description": "olympics-medals",
+  "main": "index.html",
+  "keywords": [
+    "olympics-medals"
+  ],
+  "authors": [
+    "alexberemart"
+  ],
+  "license": "(c) 2016alexberemart",
+  "homepage": "www.olympics-medals.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src/components/bower"
+  ],
+  "dependencies": {
+    "angular": "~1.5.5",
+    "angular-ui-router": "0.2.11"
+  }
+}
