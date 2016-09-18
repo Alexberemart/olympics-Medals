@@ -3,7 +3,7 @@
     angular
         .module('users')
         .controller('UserController', [
-            'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog', 'genderService',
+            'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog', 'genderService', 'countryService',
             UserController
         ]);
 
@@ -18,7 +18,7 @@
      * @param avatarsService
      * @constructor
      */
-    function UserController(resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService) {
+    function UserController(resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService, countryService) {
         var self = this;
 
         self.selected = null;
@@ -91,39 +91,22 @@
 
         }
 
-        self.showAdvanced = function(ev) {
+        self.showAdvanced = function (ev) {
             $mdDialog.show({
-                controller: DialogController,
+                controller: newResultCtrl,
                 templateUrl: 'app/src/result/results.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose:true,
+                clickOutsideToClose: true,
                 fullscreen: false
             })
-                .then(function(answer) {
+                .then(function (answer) {
                     self.status = 'You said the information was "' + answer + '".';
-                }, function() {
+                }, function () {
                     self.status = 'You cancelled the dialog.';
                 });
         };
 
-        function DialogController($scope, $mdDialog, genderService) {
-
-            $scope.genderValues = genderService.getGenderValues();
-
-            $scope.hide = function () {
-                $mdDialog.hide();
-            };
-
-            $scope.cancel = function () {
-                $mdDialog.cancel();
-            };
-
-            $scope.answer = function (answer) {
-                console.log($scope.result);
-                $mdDialog.hide(answer);
-            };
-        };
     }
 
     function resultFilter() {
@@ -146,7 +129,7 @@
                     return element.sport.includes(searchText);
                 });
             }
-            else{
+            else {
                 var resultsFilteredBySport = items;
             }
 
@@ -171,5 +154,75 @@
         };
 
     }
+
+    function newResultCtrl(resultService, $scope, $mdDialog, genderService, countryService, medalService) {
+
+        $scope.genderValues = genderService.getGenderValues();
+        $scope.medals = medalService.getMedals();
+        $scope.isMedalOnEdit = false;
+        $scope.medalOnEdit = {};
+
+        $scope.athletes = [
+            {
+                medal: {
+                    id : 1,
+                    name: 'Gold',
+                    imageUrl: 'app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png'
+                },
+                name: 'Usain Bolt',
+                countryId: 1
+            }
+        ];
+
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+
+        $scope.answer = function (answer) {
+            console.log($scope.result);
+            $mdDialog.hide(answer);
+        };
+
+        $scope.addItem = function (ev) {
+            $scope.isMedalOnEdit = true;
+        };
+
+        $scope.querySearch = function(searchText) {
+            var countries = countryService.getCountries();
+
+            if (!!searchText) {
+                return countries.filter(function (element) {
+                    return element.name.includes(searchText);
+                });
+            }
+            else {
+                return countries;
+            }
+        };
+
+        $scope.save = function(searchText, item){
+            debugger;
+            $scope.isMedalOnEdit = false;
+            var athlete = {
+                name: $scope.medalOnEdit.athlete.name,
+                medal: $scope.medalOnEdit.medal,
+                country: $scope.medalOnEdit.country
+            };
+            $scope.athletes.push(athlete)
+        };
+
+        $scope.cancelNewItem = function(){
+            $scope.isMedalOnEdit = false;
+        };
+
+        $scope.change = function(item) {
+            $scope.medalOnEdit.country = item;
+        }
+
+    };
 
 })();

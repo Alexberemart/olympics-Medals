@@ -232,6 +232,9 @@
             loadAllMedals: function () {
                 // Simulate async nature of real remote calls
                 return $q.when(results);
+            },
+            addResult: function(result){
+                results.push(result);
             }
         };
     }

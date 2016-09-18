@@ -25,6 +25,9 @@
         ];
 
         return {
+            getMedals: function () {
+                return medals;
+            },
             getMedal: function (medalID) {
                 return medals.filter(function(element){
                     return element.id === medalID

@@ -75,6 +75,9 @@
                 return countries.filter(function(element){
                     return element.id === countryId
                 })[0];
+            },
+            getCountries: function(){
+                return countries;
             }
         };
     }
