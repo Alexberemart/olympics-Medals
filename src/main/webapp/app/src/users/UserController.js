@@ -100,8 +100,51 @@
                 clickOutsideToClose: true,
                 fullscreen: false
             })
-                .then(function (answer) {
-                    self.status = 'You said the information was "' + answer + '".';
+                .then(function (result) {
+                    result.male = true;
+                    result.female = true;
+                    result.medals = [
+                        {
+                            medalId: 1,
+                            name: 'Ku Bon-chan',
+                            countryId: 12
+                        },
+                        {
+                            medalId: 2,
+                            name: 'Jean-Charles Valladont',
+                            countryId: 4
+                        },
+                        {
+                            medalId: 3,
+                            name: 'Brady Ellison',
+                            countryId: 2
+                        }
+                    ];
+                    result = {
+                        sport: 'Archery',
+                        event: 'Men\'s individual',
+                        male: true,
+                        female: false,
+                        medals: [
+                            {
+                                medalId: 1,
+                                name: 'Ku Bon-chan',
+                                countryId: 12
+                            },
+                            {
+                                medalId: 2,
+                                name: 'Jean-Charles Valladont',
+                                countryId: 4
+                            },
+                            {
+                                medalId: 3,
+                                name: 'Brady Ellison',
+                                countryId: 2
+                            }
+                        ]
+                    };
+                    console.log(result);
+                    resultService.addResult(result);
                 }, function () {
                     self.status = 'You cancelled the dialog.';
                 });
@@ -165,12 +208,16 @@
         $scope.athletes = [
             {
                 medal: {
-                    id : 1,
+                    id: 1,
                     name: 'Gold',
                     imageUrl: 'app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png'
                 },
                 name: 'Usain Bolt',
-                countryId: 1
+                country: {
+                    id: 12,
+                    name: 'South Korea',
+                    flagUrl: 'app/images/SKOR0001.gif'
+                }
             }
         ];
 
@@ -187,11 +234,15 @@
             $mdDialog.hide(answer);
         };
 
+        $scope.save = function () {
+            $mdDialog.hide($scope.result);
+        };
+
         $scope.addItem = function (ev) {
             $scope.isMedalOnEdit = true;
         };
 
-        $scope.querySearch = function(searchText) {
+        $scope.querySearch = function (searchText) {
             var countries = countryService.getCountries();
 
             if (!!searchText) {
@@ -204,7 +255,7 @@
             }
         };
 
-        $scope.save = function(searchText, item){
+        $scope.saveNewMedal = function (searchText, item) {
             debugger;
             $scope.isMedalOnEdit = false;
             var athlete = {
@@ -215,11 +266,11 @@
             $scope.athletes.push(athlete)
         };
 
-        $scope.cancelNewItem = function(){
+        $scope.cancelNewItem = function () {
             $scope.isMedalOnEdit = false;
         };
 
-        $scope.change = function(item) {
+        $scope.change = function (item) {
             $scope.medalOnEdit.country = item;
         }
 

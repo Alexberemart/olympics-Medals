@@ -24,7 +24,7 @@
 
                     <md-input-container flex="50">
                         <label>Event</label>
-                        <input ng-model="user.email" type="email">
+                        <input ng-model="result.event">
                     </md-input-container>
                 </div>
 
@@ -70,19 +70,11 @@
                         <tr md-row md-select="athlete" md-select-id="name" md-auto-select
                             ng-repeat="athlete in athletes">
                             <td md-cell>
-                                <div layout="row">
-                                    <img style="max-height: 20px;margin-top:auto;margin-bottom: auto"
-                                         ng-src="{{athlete.medal.imageUrl}}" style="max-height: 20px">
-                                    <div style="padding-left: 10px;margin-top:auto;margin-bottom:auto">
-                                        {{athlete.medal.name}}
-                                    </div>
-                                </div>
+                                <medal-with-image medal="athlete.medal"></medal-with-image>
                             </td>
                             <td md-cell>{{athlete.name}}</td>
                             <td md-cell>
-                                <img ng-src="{{athlete.country.flagUrl}}"
-                                     style="height: 20px;width: 35px;border: 1px solid;">
-                                <div style="padding-left: 10px">{{athlete.country.name}}</div>
+                                <country-with-flag country="athlete.country"></country-with-flag>
                             </td>
                         </tr>
                         </tbody>
@@ -108,14 +100,7 @@
                                         md-selected-item-change="change(item)"
                                         placeholder="Country">
                                     <md-item-template>
-                                        <div layout="row">
-                                            <img ng-src="{{item.flagUrl}}"
-                                                 style="height: 20px;width: 35px;border: 1px solid;margin-top:auto;margin-bottom:auto">
-                                            <div style="padding-left: 10px;margin-top:auto;margin-bottom:auto"
-                                                 md-highlight-text="searchText">
-                                                {{item.name}}
-                                            </div>
-                                        </div>
+                                        <country-with-flag country="item"></country-with-flag>
                                     </md-item-template>
                                 </md-autocomplete>
                                 <div layout="row">
@@ -128,13 +113,7 @@
                                         <md-select ng-model="medalOnEdit.medal">
                                             <md-option><em>None</em></md-option>
                                             <md-option ng-repeat="medal in medals" ng-value="medal">
-                                                <div layout="row">
-                                                    <img ng-src="{{medal.imageUrl}}"
-                                                         style="max-height: 20px;margin-top:auto;margin-bottom: auto">
-                                                    <div style="padding-left: 10px;margin-top:auto;margin-bottom:auto">
-                                                        {{medal.name}}
-                                                    </div>
-                                                </div>
+                                                <medal-with-image medal="medal"></medal-with-image>
                                             </md-option>
                                         </md-select>
                                     </md-input-container>
@@ -142,7 +121,7 @@
                                 <md-button ng-click="cancelNewItem()">
                                     Cancel
                                 </md-button>
-                                <md-button ng-click="save(searchText, item)">
+                                <md-button ng-click="saveNewMedal(searchText, item)">
                                     Save
                                 </md-button>
                             </form>
@@ -155,11 +134,8 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-        <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-            More on Wikipedia
-        </md-button>
         <span flex></span>
-        <md-button ng-click="answer('not useful')">
+        <md-button ng-click="save()">
             Not Useful
         </md-button>
         <md-button ng-click="answer('useful')">
