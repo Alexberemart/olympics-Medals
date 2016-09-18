@@ -1,7 +1,7 @@
 <md-dialog
         aria-label="Mango (Fruit)">
 
-    <form ng-cloak>
+    <div ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Mango (Fruit)</h2>
@@ -16,44 +16,42 @@
 
             <div class="md-dialog-content">
 
-                <div>
-                    <md-input-container>
+                <div layout="row">
+                    <md-input-container flex="50">
                         <label>Sport</label>
                         <input ng-model="result.sport">
                     </md-input-container>
 
-                    <md-input-container>
+                    <md-input-container flex="50">
                         <label>Event</label>
                         <input ng-model="user.email" type="email">
                     </md-input-container>
                 </div>
 
-                <md-divider md-inset></md-divider>
+                <div>
+                    <md-radio-group ng-model="ul.selectedGenderId">
 
-                <md-radio-group ng-model="ul.selectedGenderId">
+                        <md-radio-button class="md-2-line"
+                                         ng-repeat="genderValue in genderValues"
+                                         value="{{genderValue.id}}"
+                                         ng-class="{'md-primary' : genderValue.primary}">
+                            {{genderValue.name}}
+                        </md-radio-button>
 
-                    <md-radio-button class="md-2-line"
-                                     ng-repeat="genderValue in genderValues"
-                                     value="{{genderValue.id}}"
-                                     ng-class="{'md-primary' : genderValue.primary}">
-                        {{genderValue.name}}
-                    </md-radio-button>
-
-                </md-radio-group>
-
-                <md-divider md-inset></md-divider>
+                    </md-radio-group>
+                </div>
 
                 <md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show"
                             aria-hidden="false">
                     <div class="md-toolbar-tools">
-                        <h2 class="md-title">Nutrition</h2>
+                        <h2 class="md-title">Medals</h2>
                         <div flex="" class="flex"></div>
                         <!--<button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" ng-click="filter.show = true" aria-label="filter_list">-->
                         <!--<md-icon md-font-icon="fa fa-search" class="fa"></md-icon>-->
                         <!--</button>-->
                         <button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude=""
                                 ng-click="addItem($event)" aria-label="local_dining">
-                            <md-icon md-font-icon="fa fa-search" class="fa"></md-icon>
+                            <md-icon md-font-icon="fa fa-plus" class="fa"></md-icon>
                             <div class="md-ripple-container"></div>
                         </button>
                     </div>
@@ -71,12 +69,20 @@
                         <tbody md-body>
                         <tr md-row md-select="athlete" md-select-id="name" md-auto-select
                             ng-repeat="athlete in athletes">
-                            <td md-cell><img ng-src="{{athlete.medal.imageUrl}}" style="margin: auto;max-height: 20px">{{athlete.medal.name}}
+                            <td md-cell>
+                                <div layout="row">
+                                    <img style="max-height: 20px;margin-top:auto;margin-bottom: auto"
+                                         ng-src="{{athlete.medal.imageUrl}}" style="max-height: 20px">
+                                    <div style="padding-left: 10px;margin-top:auto;margin-bottom:auto">
+                                        {{athlete.medal.name}}
+                                    </div>
+                                </div>
                             </td>
                             <td md-cell>{{athlete.name}}</td>
-                            <td md-cell><img ng-src="{{athlete.country.flagUrl}}"
-                                             style="height: 20px;width: 35px;border: 1px solid;">
-                                {{athlete.country.name}}
+                            <td md-cell>
+                                <img ng-src="{{athlete.country.flagUrl}}"
+                                     style="height: 20px;width: 35px;border: 1px solid;">
+                                <div style="padding-left: 10px">{{athlete.country.name}}</div>
                             </td>
                         </tr>
                         </tbody>
@@ -87,35 +93,48 @@
                     <md-card>
                         <md-card-title>
                             <md-card-title-text>
-                                <span class="md-headline">add new medal</span>
+                                <span class="md-headline">New Medal</span>
                             </md-card-title-text>
                         </md-card-title>
+
                         <md-card-content>
                             <form>
-                                <div>
-                                    <md-autocomplete
-                                            md-no-cache="noCache"
-                                            md-selected-item="selectedItem"
-                                            md-search-text="searchText"
-                                            md-items="item in querySearch(searchText)"
-                                            md-item-text="item.name"
-                                            md-selected-item-change="change(item)">
-                                        <md-item-template>
+                                <md-autocomplete
+                                        md-no-cache="noCache"
+                                        md-selected-item="selectedItem"
+                                        md-search-text="searchText"
+                                        md-items="item in querySearch(searchText)"
+                                        md-item-text="item.name"
+                                        md-selected-item-change="change(item)"
+                                        placeholder="Country">
+                                    <md-item-template>
+                                        <div layout="row">
                                             <img ng-src="{{item.flagUrl}}"
-                                                 style="height: 20px;width: 35px;border: 1px solid;">
-                                            <span md-highlight-text="searchText">{{item.name}}</span>
-                                        </md-item-template>
-                                    </md-autocomplete>
-                                    <md-input-container>
+                                                 style="height: 20px;width: 35px;border: 1px solid;margin-top:auto;margin-bottom:auto">
+                                            <div style="padding-left: 10px;margin-top:auto;margin-bottom:auto"
+                                                 md-highlight-text="searchText">
+                                                {{item.name}}
+                                            </div>
+                                        </div>
+                                    </md-item-template>
+                                </md-autocomplete>
+                                <div layout="row">
+                                    <md-input-container flex="50">
                                         <label>Athlete</label>
                                         <input ng-model="medalOnEdit.athlete.name">
                                     </md-input-container>
-                                    <md-input-container>
+                                    <md-input-container flex="50">
                                         <label>Medal</label>
                                         <md-select ng-model="medalOnEdit.medal">
                                             <md-option><em>None</em></md-option>
                                             <md-option ng-repeat="medal in medals" ng-value="medal">
-                                                <img ng-src="{{medal.imageUrl}}" style="margin: auto;max-height: 20px">{{medal.name}}
+                                                <div layout="row">
+                                                    <img ng-src="{{medal.imageUrl}}"
+                                                         style="max-height: 20px;margin-top:auto;margin-bottom: auto">
+                                                    <div style="padding-left: 10px;margin-top:auto;margin-bottom:auto">
+                                                        {{medal.name}}
+                                                    </div>
+                                                </div>
                                             </md-option>
                                         </md-select>
                                     </md-input-container>
@@ -130,21 +149,22 @@
                         </md-card-content>
                     </md-card>
                 </div>
-
             </div>
-        </md-dialog-content>
 
-        <md-dialog-actions layout="row">
-            <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                More on Wikipedia
-            </md-button>
-            <span flex></span>
-            <md-button ng-click="answer('not useful')">
-                Not Useful
-            </md-button>
-            <md-button ng-click="answer('useful')">
-                Useful
-            </md-button>
-        </md-dialog-actions>
+    </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+            More on Wikipedia
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="answer('not useful')">
+            Not Useful
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            Useful
+        </md-button>
+    </md-dialog-actions>
     </form>
 </md-dialog>
