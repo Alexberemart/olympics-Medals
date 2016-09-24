@@ -7,25 +7,7 @@
 
     <p>{{ul.selected.content}}</p>
     <form ng-submit="$event.preventDefault()" name="searchForm">
-        <md-autocomplete flex="" required=""
-                         md-input-name="autocompleteField"
-                         md-input-minlength="1"
-                         md-input-maxlength="18"
-                         md-no-cache="ul.noCache"
-                         md-selected-item="ul.selectedItem"
-                         md-search-text="ul.searchText"
-                         md-items="item in ul.querySearch(ul.searchText)"
-                         md-item-text="item.name"
-                         md-floating-label="Spot Filter">
-            <md-item-template>
-                <span md-highlight-text="ul.searchText">{{item.name}}</span>
-            </md-item-template>
-            <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-                <!--<div ng-message="required">You <b>must</b> have a favorite state.</div>-->
-                <!--<div ng-message="minlength">Your entry is not long enough.</div>-->
-                <div ng-message="maxlength">Your entry is too long.</div>
-            </div>
-        </md-autocomplete>
+        <sport-autocomplete selected-item="ul.selectedItem" search-text="ul.searchText"></sport-autocomplete>
 
         <md-radio-group ng-model="ul.selectedGenderId">
 

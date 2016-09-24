@@ -11,13 +11,6 @@
         .module('users')
         .filter('resultFilter', resultFilter);
 
-    /**
-     * Main Controller for the Angular Material Starter App
-     * @param $scope
-     * @param $mdSidenav
-     * @param avatarsService
-     * @constructor
-     */
     function UserController(resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService, countryService) {
         var self = this;
 
@@ -25,12 +18,12 @@
         self.users = [];
         self.selectUser = selectUser;
         self.toggleList = toggleUsersList;
-        self.querySearch = querySearch;
         self.maleResults = false;
         self.genderValues = genderService.getGenderValues();
         self.selectedGenderId = self.genderValues[0].id;
 
         // Load all registered users
+
 
         resultService
             .loadAllUsers()
@@ -39,17 +32,16 @@
                 self.selected = users[0];
             });
 
-        resultService
-            .loadAllMedals()
-            .then(function (medals) {
-                self.medals = [].concat(medals);
-            });
 
-        resultService
-            .loadAllSports()
-            .then(function (sports) {
-                self.sports = [].concat(sports);
-            });
+        self.loadResults = function () {
+            resultService
+                .loadAllMedals()
+                .then(function (medals) {
+                    self.medals = [].concat(medals);
+                });
+        };
+
+        self.loadResults();
 
         // *********************************
         // Internal methods
@@ -68,27 +60,6 @@
          */
         function selectUser(user) {
             self.selected = angular.isNumber(user) ? $scope.users[user] : user;
-        }
-
-        function querySearch(query) {
-            var results = query ? self.sports.filter(createFilterFor(query)) : self.sports;
-            var deferred = $q.defer();
-            $timeout(function () {
-                deferred.resolve(results);
-            }, Math.random() * 1000, false);
-            return deferred.promise;
-        }
-
-        /**
-         * Create filter function for a query string
-         */
-        function createFilterFor(query) {
-            var lowercaseQuery = angular.lowercase(query);
-
-            return function filterFn(user) {
-                return (angular.lowercase(user.name)).indexOf(lowercaseQuery) === 0;
-            };
-
         }
 
         self.showAdvanced = function (ev) {
@@ -145,6 +116,7 @@
                     };
                     console.log(result);
                     resultService.addResult(result);
+                    self.loadResults();
                 }, function () {
                     self.status = 'You cancelled the dialog.';
                 });
