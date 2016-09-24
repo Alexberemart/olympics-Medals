@@ -17,10 +17,14 @@
             <div class="md-dialog-content">
 
                 <div layout="row">
-                    <md-input-container flex="50">
-                        <label>Sport</label>
-                        <input ng-model="result.sport">
-                    </md-input-container>
+                    <form name="searchForm">
+                        <sport-autocomplete
+                                search-text="result.sport"
+                                selected-item="selectedItem"
+                                sport-autocomplete-label="Sport"
+                                sport-autocomplete-required="true"
+                        ></sport-autocomplete>
+                    </form>
 
                     <md-input-container flex="50">
                         <label>Event</label>

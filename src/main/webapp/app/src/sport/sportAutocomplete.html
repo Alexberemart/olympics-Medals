@@ -1,5 +1,6 @@
-<md-autocomplete flex="" required=""
-                 md-input-name="autocompleteField"
+<md-autocomplete flex="" ng-required="sportAutocompleteRequired"
+                 md-input-id="sportAutocompleteInputId"
+                 md-input-name="sportAutocompleteInputName"
                  md-input-minlength="1"
                  md-input-maxlength="18"
                  md-no-cache="noCache"
@@ -7,13 +8,17 @@
                  md-search-text="searchText"
                  md-items="item in querySearch(searchText)"
                  md-item-text="item.name"
-                 md-floating-label="Spot Filter">
+                 md-floating-label="{{sportAutocompleteLabel}}">
     <md-item-template>
         <span md-highlight-text="searchText">{{item.name}}</span>
     </md-item-template>
-    <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-        <!--<div ng-message="required">You <b>must</b> have a favorite state.</div>-->
+    <div ng-messages="searchForm.sportAutocompleteInputName.$error"
+         ng-if="searchForm.sportAutocompleteInputName.$touched">
+        <div ng-message="required" ng-if="sportAutocompleteRequired">You <b>must</b> have a favorite state.</div>
         <!--<div ng-message="minlength">Your entry is not long enough.</div>-->
         <div ng-message="maxlength">Your entry is too long.</div>
     </div>
+    <pre>{{searchForm | json}}</pre>
+    <pre>{{sportAutocompleteRequired}}</pre>
+    <pre>{{sportAutocompleteRequired==true}}</pre>
 </md-autocomplete>

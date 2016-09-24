@@ -9,10 +9,16 @@
             restrict: 'E',
             scope: {
                 selectedItem: '=selectedItem',
-                searchText: '=searchText'
+                searchText: '=searchText',
+                sportAutocompleteLabel: '@',
+                sportAutocompleteRequired: '='
             },
+            // require: '^form',
             templateUrl: 'app/src/sport/sportAutocomplete.html',
-            link: function(scope) {
+            link: function(scope, element, attrs, ctrl) {
+
+                debugger;
+                scope.searchForm = ctrl;
 
                 resultService
                     .loadAllSports()

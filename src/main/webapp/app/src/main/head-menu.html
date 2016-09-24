@@ -7,7 +7,15 @@
 
     <p>{{ul.selected.content}}</p>
     <form ng-submit="$event.preventDefault()" name="searchForm">
-        <sport-autocomplete selected-item="ul.selectedItem" search-text="ul.searchText"></sport-autocomplete>
+
+        <!--<pre>{{searchForm | json}}</pre>-->
+
+        <sport-autocomplete
+                selected-item="ul.selectedItem"
+                search-text="ul.searchText"
+                sport-autocomplete-label="Sport Filter"
+                sport-autocomplete-required="false"
+        ></sport-autocomplete>
 
         <md-radio-group ng-model="ul.selectedGenderId">
 
