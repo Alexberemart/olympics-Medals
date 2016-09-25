@@ -13,11 +13,10 @@
                 sportAutocompleteLabel: '@',
                 sportAutocompleteRequired: '='
             },
-            // require: '^form',
+            require: '^form',
             templateUrl: 'app/src/sport/sportAutocomplete.html',
             link: function(scope, element, attrs, ctrl) {
 
-                debugger;
                 scope.searchForm = ctrl;
 
                 resultService

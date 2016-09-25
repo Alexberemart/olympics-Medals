@@ -16,122 +16,125 @@
 
             <div class="md-dialog-content">
 
-                <div layout="row">
-                    <form name="searchForm">
+                <form name="searchForm">
+
+                    <div layout="row">
                         <sport-autocomplete
                                 search-text="result.sport"
                                 selected-item="selectedItem"
                                 sport-autocomplete-label="Sport"
                                 sport-autocomplete-required="true"
                         ></sport-autocomplete>
-                    </form>
 
-                    <md-input-container flex="50">
-                        <label>Event</label>
-                        <input ng-model="result.event">
-                    </md-input-container>
-                </div>
-
-                <div>
-                    <md-radio-group ng-model="ul.selectedGenderId">
-
-                        <md-radio-button class="md-2-line"
-                                         ng-repeat="genderValue in genderValues"
-                                         value="{{genderValue.id}}"
-                                         ng-class="{'md-primary' : genderValue.primary}">
-                            {{genderValue.name}}
-                        </md-radio-button>
-
-                    </md-radio-group>
-                </div>
-
-                <md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show"
-                            aria-hidden="false">
-                    <div class="md-toolbar-tools">
-                        <h2 class="md-title">Medals</h2>
-                        <div flex="" class="flex"></div>
-                        <!--<button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" ng-click="filter.show = true" aria-label="filter_list">-->
-                        <!--<md-icon md-font-icon="fa fa-search" class="fa"></md-icon>-->
-                        <!--</button>-->
-                        <button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude=""
-                                ng-click="addItem($event)" aria-label="local_dining">
-                            <md-icon md-font-icon="fa fa-plus" class="fa"></md-icon>
-                            <div class="md-ripple-container"></div>
-                        </button>
+                        <md-input-container flex="50">
+                            <label>Event</label>
+                            <input ng-model="result.event">
+                        </md-input-container>
                     </div>
-                </md-toolbar>
 
-                <md-table-container>
-                    <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-                        <thead md-head md-order="query.order" md-on-reorder="getDesserts">
-                        <tr md-row>
-                            <th md-column md-order-by="nameToLower"><span>Medal</span></th>
-                            <th md-column md-numeric md-order-by="calories.value"><span>Name</span></th>
-                            <th md-column md-numeric>Country</th>
-                        </tr>
-                        </thead>
-                        <tbody md-body>
-                        <tr md-row md-select="athlete" md-select-id="name" md-auto-select
-                            ng-repeat="athlete in athletes">
-                            <td md-cell>
-                                <medal-with-image medal="athlete.medal"></medal-with-image>
-                            </td>
-                            <td md-cell>{{athlete.name}}</td>
-                            <td md-cell>
-                                <country-with-flag country="athlete.country"></country-with-flag>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </md-table-container>
+                    <div>
+                        <md-radio-group ng-model="ul.selectedGenderId">
 
-                <div ng-if="isMedalOnEdit">
-                    <md-card>
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">New Medal</span>
-                            </md-card-title-text>
-                        </md-card-title>
+                            <md-radio-button class="md-2-line"
+                                             ng-repeat="genderValue in genderValues"
+                                             value="{{genderValue.id}}"
+                                             ng-class="{'md-primary' : genderValue.primary}">
+                                {{genderValue.name}}
+                            </md-radio-button>
 
-                        <md-card-content>
-                            <form>
-                                <md-autocomplete
-                                        md-no-cache="noCache"
-                                        md-selected-item="selectedItem"
-                                        md-search-text="searchText"
-                                        md-items="item in querySearch(searchText)"
-                                        md-item-text="item.name"
-                                        md-selected-item-change="change(item)"
-                                        placeholder="Country">
-                                    <md-item-template>
-                                        <country-with-flag country="item"></country-with-flag>
-                                    </md-item-template>
-                                </md-autocomplete>
-                                <div layout="row">
-                                    <md-input-container flex="50">
-                                        <label>Athlete</label>
-                                        <input ng-model="medalOnEdit.athlete.name">
-                                    </md-input-container>
-                                    <md-input-container flex="50">
-                                        <label>Medal</label>
-                                        <md-select ng-model="medalOnEdit.medal">
-                                            <md-option><em>None</em></md-option>
-                                            <md-option ng-repeat="medal in medals" ng-value="medal">
-                                                <medal-with-image medal="medal"></medal-with-image>
-                                            </md-option>
-                                        </md-select>
-                                    </md-input-container>
-                                </div>
-                                <md-button ng-click="cancelNewItem()">
-                                    Cancel
-                                </md-button>
-                                <md-button ng-click="saveNewMedal(searchText, item)">
-                                    Save
-                                </md-button>
-                            </form>
-                        </md-card-content>
-                    </md-card>
-                </div>
+                        </md-radio-group>
+                    </div>
+
+                    <md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show"
+                                aria-hidden="false">
+                        <div class="md-toolbar-tools">
+                            <h2 class="md-title">Medals</h2>
+                            <div flex="" class="flex"></div>
+                            <!--<button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" ng-click="filter.show = true" aria-label="filter_list">-->
+                            <!--<md-icon md-font-icon="fa fa-search" class="fa"></md-icon>-->
+                            <!--</button>-->
+                            <button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude=""
+                                    ng-click="addItem($event)" aria-label="local_dining">
+                                <md-icon md-font-icon="fa fa-plus" class="fa"></md-icon>
+                                <div class="md-ripple-container"></div>
+                            </button>
+                        </div>
+                    </md-toolbar>
+
+                    <md-table-container>
+                        <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                            <tr md-row>
+                                <th md-column md-order-by="nameToLower"><span>Medal</span></th>
+                                <th md-column md-numeric md-order-by="calories.value"><span>Name</span></th>
+                                <th md-column md-numeric>Country</th>
+                            </tr>
+                            </thead>
+                            <tbody md-body>
+                            <tr md-row md-select="athlete" md-select-id="name" md-auto-select
+                                ng-repeat="athlete in athletes">
+                                <td md-cell>
+                                    <medal-with-image medal="athlete.medal"></medal-with-image>
+                                </td>
+                                <td md-cell>{{athlete.name}}</td>
+                                <td md-cell>
+                                    <country-with-flag country="athlete.country"></country-with-flag>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                    <div ng-if="isMedalOnEdit">
+                        <md-card>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">New Medal</span>
+                                </md-card-title-text>
+                            </md-card-title>
+
+                            <md-card-content>
+                                <form>
+                                    <md-autocomplete
+                                            md-no-cache="noCache"
+                                            md-selected-item="selectedItem"
+                                            md-search-text="searchText"
+                                            md-items="item in querySearch(searchText)"
+                                            md-item-text="item.name"
+                                            md-selected-item-change="change(item)"
+                                            placeholder="Country">
+                                        <md-item-template>
+                                            <country-with-flag country="item"></country-with-flag>
+                                        </md-item-template>
+                                    </md-autocomplete>
+                                    <div layout="row">
+                                        <md-input-container flex="50">
+                                            <label>Athlete</label>
+                                            <input ng-model="medalOnEdit.athlete.name">
+                                        </md-input-container>
+                                        <md-input-container flex="50">
+                                            <label>Medal</label>
+                                            <md-select ng-model="medalOnEdit.medal">
+                                                <md-option><em>None</em></md-option>
+                                                <md-option ng-repeat="medal in medals" ng-value="medal">
+                                                    <medal-with-image medal="medal"></medal-with-image>
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <md-button ng-click="cancelNewItem()">
+                                        Cancel
+                                    </md-button>
+                                    <md-button ng-click="saveNewMedal(searchText, item)">
+                                        Save
+                                    </md-button>
+                                </form>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+
+                </form>
+
             </div>
 
     </div>

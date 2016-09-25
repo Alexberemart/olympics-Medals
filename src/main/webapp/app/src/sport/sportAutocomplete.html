@@ -14,11 +14,8 @@
     </md-item-template>
     <div ng-messages="searchForm.sportAutocompleteInputName.$error"
          ng-if="searchForm.sportAutocompleteInputName.$touched">
-        <div ng-message="required" ng-if="sportAutocompleteRequired">You <b>must</b> have a favorite state.</div>
+        <div ng-message="required" ng-if="sportAutocompleteRequired">You <b>must</b> select a sport.</div>
         <!--<div ng-message="minlength">Your entry is not long enough.</div>-->
         <div ng-message="maxlength">Your entry is too long.</div>
     </div>
-    <pre>{{searchForm | json}}</pre>
-    <pre>{{sportAutocompleteRequired}}</pre>
-    <pre>{{sportAutocompleteRequired==true}}</pre>
 </md-autocomplete>
