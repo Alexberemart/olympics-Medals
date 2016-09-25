@@ -176,22 +176,23 @@
         $scope.medals = medalService.getMedals();
         $scope.isMedalOnEdit = false;
         $scope.medalOnEdit = {};
+        $scope.athletes = [];
 
-        $scope.athletes = [
-            {
-                medal: {
-                    id: 1,
-                    name: 'Gold',
-                    imageUrl: 'app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png'
-                },
-                name: 'Usain Bolt',
-                country: {
-                    id: 12,
-                    name: 'South Korea',
-                    flagUrl: 'app/images/SKOR0001.gif'
-                }
-            }
-        ];
+        // $scope.athletes = [
+        //     {
+        //         medal: {
+        //             id: 1,
+        //             name: 'Gold',
+        //             imageUrl: 'app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png'
+        //         },
+        //         name: 'Usain Bolt',
+        //         country: {
+        //             id: 12,
+        //             name: 'South Korea',
+        //             flagUrl: 'app/images/SKOR0001.gif'
+        //         }
+        //     }
+        // ];
 
         $scope.hide = function () {
             $mdDialog.hide();
@@ -205,7 +206,15 @@
             var gender = genderService.getGender($scope.result.gender)[0];
             $scope.result.male = gender.maleResults;
             $scope.result.female = gender.femaleResults;
-            $scope.result.medals = $scope.athletes;
+            var medals = [];
+            $scope.athletes.forEach(function (element) {
+                medals.push({
+                    medalId: element.medal.id,
+                    name: element.name,
+                    countryId: element.country.id
+                });
+            });
+            $scope.result.medals = medals;
             $mdDialog.hide($scope.result);
         };
 
@@ -226,7 +235,7 @@
             }
         };
 
-        $scope.saveNewMedal = function (searchText, item) {
+        $scope.saveNewMedal = function () {
             $scope.isMedalOnEdit = false;
             var athlete = {
                 name: $scope.medalOnEdit.athlete.name,

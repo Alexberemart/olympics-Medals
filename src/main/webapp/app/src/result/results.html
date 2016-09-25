@@ -33,7 +33,6 @@
                     </div>
 
                     <div>
-                        <pre>{{result.gender}}</pre>
                         <md-radio-group ng-model="result.gender" ng-required="true">
 
                             <md-radio-button class="md-2-line"
@@ -98,14 +97,14 @@
                                 <form>
                                     <md-autocomplete
                                             md-no-cache="noCache"
-                                            md-selected-item="selectedItem"
-                                            md-search-text="searchText"
-                                            md-items="item in querySearch(searchText)"
-                                            md-item-text="item.name"
-                                            md-selected-item-change="change(item)"
+                                            md-selected-item="selectedCountry"
+                                            md-search-text="countrySearchText"
+                                            md-items="country in querySearch(countrySearchText)"
+                                            md-item-text="country.name"
+                                            md-selected-item-change="change(country)"
                                             placeholder="Country">
                                         <md-item-template>
-                                            <country-with-flag country="item"></country-with-flag>
+                                            <country-with-flag country="country"></country-with-flag>
                                         </md-item-template>
                                     </md-autocomplete>
                                     <div layout="row">
@@ -126,7 +125,7 @@
                                     <md-button ng-click="cancelNewItem()">
                                         Cancel
                                     </md-button>
-                                    <md-button ng-click="saveNewMedal(searchText, item)">
+                                    <md-button ng-click="saveNewMedal()">
                                         Save
                                     </md-button>
                                 </form>
