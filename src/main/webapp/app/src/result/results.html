@@ -28,12 +28,13 @@
 
                         <md-input-container flex="50">
                             <label>Event</label>
-                            <input ng-model="result.event">
+                            <input ng-model="result.event" required>
                         </md-input-container>
                     </div>
 
                     <div>
-                        <md-radio-group ng-model="ul.selectedGenderId">
+                        <pre>{{result.gender}}</pre>
+                        <md-radio-group ng-model="result.gender" ng-required="true">
 
                             <md-radio-button class="md-2-line"
                                              ng-repeat="genderValue in genderValues"
@@ -142,12 +143,8 @@
 
     <md-dialog-actions layout="row">
         <span flex></span>
-        <md-button ng-click="save()">
-            Not Useful
-        </md-button>
-        <md-button ng-click="answer('useful')">
-            Useful
+        <md-button ng-click="save()" ng-disabled="searchForm.$invalid">
+            Save
         </md-button>
     </md-dialog-actions>
-    </form>
 </md-dialog>

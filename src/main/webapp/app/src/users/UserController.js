@@ -72,48 +72,48 @@
                 fullscreen: false
             })
                 .then(function (result) {
-                    result.male = true;
-                    result.female = true;
-                    result.medals = [
-                        {
-                            medalId: 1,
-                            name: 'Ku Bon-chan',
-                            countryId: 12
-                        },
-                        {
-                            medalId: 2,
-                            name: 'Jean-Charles Valladont',
-                            countryId: 4
-                        },
-                        {
-                            medalId: 3,
-                            name: 'Brady Ellison',
-                            countryId: 2
-                        }
-                    ];
-                    result = {
-                        sport: 'Archery',
-                        event: 'Men\'s individual',
-                        male: true,
-                        female: false,
-                        medals: [
-                            {
-                                medalId: 1,
-                                name: 'Ku Bon-chan',
-                                countryId: 12
-                            },
-                            {
-                                medalId: 2,
-                                name: 'Jean-Charles Valladont',
-                                countryId: 4
-                            },
-                            {
-                                medalId: 3,
-                                name: 'Brady Ellison',
-                                countryId: 2
-                            }
-                        ]
-                    };
+                    // result.male = true;
+                    // result.female = true;
+                    // result.medals = [
+                    //     {
+                    //         medalId: 1,
+                    //         name: 'Ku Bon-chan',
+                    //         countryId: 12
+                    //     },
+                    //     {
+                    //         medalId: 2,
+                    //         name: 'Jean-Charles Valladont',
+                    //         countryId: 4
+                    //     },
+                    //     {
+                    //         medalId: 3,
+                    //         name: 'Brady Ellison',
+                    //         countryId: 2
+                    //     }
+                    // ];
+                    // result = {
+                    //     sport: 'Archery',
+                    //     event: 'Men\'s individual',
+                    //     male: true,
+                    //     female: false,
+                    //     medals: [
+                    //         {
+                    //             medalId: 1,
+                    //             name: 'Ku Bon-chan',
+                    //             countryId: 12
+                    //         },
+                    //         {
+                    //             medalId: 2,
+                    //             name: 'Jean-Charles Valladont',
+                    //             countryId: 4
+                    //         },
+                    //         {
+                    //             medalId: 3,
+                    //             name: 'Brady Ellison',
+                    //             countryId: 2
+                    //         }
+                    //     ]
+                    // };
                     console.log(result);
                     resultService.addResult(result);
                     self.loadResults();
@@ -201,12 +201,11 @@
             $mdDialog.cancel();
         };
 
-        $scope.answer = function (answer) {
-            console.log($scope.result);
-            $mdDialog.hide(answer);
-        };
-
         $scope.save = function () {
+            var gender = genderService.getGender($scope.result.gender)[0];
+            $scope.result.male = gender.maleResults;
+            $scope.result.female = gender.femaleResults;
+            $scope.result.medals = $scope.athletes;
             $mdDialog.hide($scope.result);
         };
 
@@ -228,7 +227,6 @@
         };
 
         $scope.saveNewMedal = function (searchText, item) {
-            debugger;
             $scope.isMedalOnEdit = false;
             var athlete = {
                 name: $scope.medalOnEdit.athlete.name,

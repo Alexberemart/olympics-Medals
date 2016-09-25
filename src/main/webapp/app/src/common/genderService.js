@@ -32,6 +32,11 @@
         return {
             getGenderValues: function (countryId) {
                 return genderValues;
+            },
+            getGender: function (genderId) {
+                return genderValues.filter(function (element) {
+                    return element.id == genderId;
+                });
             }
         };
     }
