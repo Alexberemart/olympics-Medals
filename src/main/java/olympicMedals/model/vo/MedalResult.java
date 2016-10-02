@@ -1,4 +1,4 @@
-package model.vo;
+package olympicMedals.model.vo;
 
 public class MedalResult {
 
