@@ -6,7 +6,7 @@
 
     <groupId>com.alexberemart</groupId>
     <artifactId>olympics-medals</artifactId>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -79,7 +79,7 @@
                     <instrumentation>
                         <ignoreTrivial>true</ignoreTrivial>
                         <excludes>
-                            <exclude>com/alexberemart/olympics-Medals/rest/*</exclude>
+                            <exclude>com/alexberemart/olympicMedals/rest/*</exclude>
                         </excludes>
                     </instrumentation>
                     <check>
