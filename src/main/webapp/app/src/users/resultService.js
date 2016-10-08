@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('users')
-        .service('resultService', ['$q', 'countryService', resultService]);
+        .service('resultService', ['$q', 'countryService', 'urlConstantsFact', '$http', resultService]);
 
     /**
      * Users DataService
@@ -12,7 +12,7 @@
      * @returns {{loadAll: Function}}
      * @constructor
      */
-    function resultService($q, countryService) {
+    function resultService($q, countryService, urlConstantsFact, $http) {
 
         var results = [
             {
@@ -235,6 +235,15 @@
             },
             addResult: function(result){
                 results.push(result);
+
+                var resultToSave = {
+                    sport: result.sport,
+                    event: result.event,
+                    male: result.male,
+                    female: result.female,
+                };
+
+                $http.post(urlConstantsFact.SAVE_RESULT(), resultToSave);
             }
         };
     }

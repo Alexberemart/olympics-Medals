@@ -22,6 +22,14 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repository</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <finalName>olympics-medals</finalName>
         <resources>
