@@ -1,10 +1,12 @@
 package com.alexberemart.olympicMedals.model.vo;
 
 import com.alexberemart.core.model.vo.base.BaseEntity;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.annotations.*;
 
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.List;
 
 @org.hibernate.annotations.Entity(dynamicUpdate = true)
@@ -17,7 +19,6 @@ public class Result extends BaseEntity{
     protected Boolean male;
     protected Boolean female;
 
-    @Transient
     protected List<MedalResult> medals;
 
     public String getSport() {
@@ -52,12 +53,13 @@ public class Result extends BaseEntity{
         this.female = female;
     }
 
-    @Transient
+    @OneToMany(mappedBy = "result", fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JsonManagedReference("result")
     public List<MedalResult> getMedals() {
         return medals;
     }
 
-    @Transient
     public void setMedals(List<MedalResult> medals) {
         this.medals = medals;
     }

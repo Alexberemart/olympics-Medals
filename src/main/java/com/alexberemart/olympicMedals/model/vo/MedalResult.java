@@ -1,9 +1,33 @@
 package com.alexberemart.olympicMedals.model.vo;
 
-public class MedalResult {
+import com.alexberemart.core.model.vo.base.BaseEntity;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@org.hibernate.annotations.Entity(dynamicUpdate = true)
+@Table(name = "resultMedals")
+@Entity
+public class MedalResult extends BaseEntity {
+
+    protected Result result;
     protected Integer medalId;
     protected String name;
+
+    @ManyToOne
+    @JoinColumn(name = "resultId", nullable = false)
+    @JsonBackReference("result")
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
     protected Integer countryId;
 
     public Integer getMedalId() {
