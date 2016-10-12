@@ -14,7 +14,9 @@
             link: function(scope) {
                 scope.deleteResult = function(result){
                     resultService.deleteResult(result)
-                    scope.$emit("reloadResults")
+                        .then(function(){
+                            scope.$emit("reloadResults")
+                        })
                 };
             }
         };

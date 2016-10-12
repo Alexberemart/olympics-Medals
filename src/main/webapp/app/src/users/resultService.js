@@ -247,7 +247,7 @@
                     medals: result.medals
                 };
 
-                $http.post(urlConstantsFact.SAVE_RESULT(), resultToSave);
+                return $http.post(urlConstantsFact.SAVE_RESULT(), resultToSave);
             },
             deleteResult: function (result) {
                 return $http.delete(urlConstantsFact.SAVE_RESULT() + '/' + result.id);

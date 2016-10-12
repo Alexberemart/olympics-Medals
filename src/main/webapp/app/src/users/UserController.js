@@ -41,6 +41,8 @@
                 });
         };
 
+        self.loadResults();
+
         $scope.$on("reloadResults", function(){
             self.loadResults();
         });
@@ -130,8 +132,10 @@
                     //     ]
                     // };
                     console.log(result);
-                    resultService.addResult(result);
-                    self.loadResults();
+                    resultService.addResult(result)
+                        .then(function(){
+                            self.loadResults();
+                        })
                 }, function () {
                     self.status = 'You cancelled the dialog.';
                 });
