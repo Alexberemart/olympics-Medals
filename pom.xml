@@ -41,7 +41,7 @@
     </distributionManagement>
 
     <build>
-        <finalName>olympics-medals</finalName>
+        <finalName>olympic-medals</finalName>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/conf</directory>
