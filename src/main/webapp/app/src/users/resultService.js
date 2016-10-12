@@ -233,6 +233,9 @@
                 // Simulate async nature of real remote calls
                 return $q.when(results);
             },
+            loadAllResults: function () {
+                return $http.get(urlConstantsFact.SAVE_RESULT());
+            },
             addResult: function(result){
                 results.push(result);
 
@@ -241,9 +244,13 @@
                     event: result.event,
                     male: result.male,
                     female: result.female,
+                    medals: result.medals
                 };
 
                 $http.post(urlConstantsFact.SAVE_RESULT(), resultToSave);
+            },
+            deleteResult: function (result) {
+                return $http.delete(urlConstantsFact.SAVE_RESULT() + '/' + result.id);
             }
         };
     }

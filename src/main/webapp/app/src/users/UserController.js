@@ -3,7 +3,7 @@
     angular
         .module('users')
         .controller('UserController', [
-            'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog', 'genderService', 'countryService',
+            '$scope', 'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog', 'genderService', 'countryService',
             UserController
         ]);
 
@@ -11,7 +11,7 @@
         .module('users')
         .filter('resultFilter', resultFilter);
 
-    function UserController(resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService, countryService) {
+    function UserController($scope, resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService, countryService) {
         var self = this;
 
         self.selected = null;
@@ -35,13 +35,15 @@
 
         self.loadResults = function () {
             resultService
-                .loadAllMedals()
+                .loadAllResults()
                 .then(function (medals) {
-                    self.medals = [].concat(medals);
+                    self.medals = [].concat(medals.data);
                 });
         };
 
-        self.loadResults();
+        $scope.$on("reloadResults", function(){
+            self.loadResults();
+        });
 
         // *********************************
         // Internal methods
@@ -61,6 +63,19 @@
         function selectUser(user) {
             self.selected = angular.isNumber(user) ? $scope.users[user] : user;
         }
+
+        function init () {
+            resultService
+                .loadAllMedals()
+                .then(function (results) {
+                    results.forEach(function(element){
+                        resultService.addResult(element);
+                    });
+                    self.loadResults();
+                });
+        }
+
+        init();
 
         self.showAdvanced = function (ev) {
             $mdDialog.show({

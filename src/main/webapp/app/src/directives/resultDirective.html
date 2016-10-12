@@ -3,6 +3,9 @@
         <div class="md-toolbar-tools" layout-align="center center">
             <h3 layout-align="center end">
                 <span>{{result.event}}</span>
+                <md-button class="md-icon-button" ng-click="deleteResult(result)">
+                    <md-icon md-font-icon="fa-trash-o" class="fa" aria-label="Close dialog"></md-icon>
+                </md-button>
             </h3>
         </div>
     </md-toolbar>

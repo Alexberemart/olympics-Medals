@@ -18,6 +18,14 @@ public class ResultServicesTest extends AbstractOlympicMedalsTest {
     }
 
     @Test
+    public void deleteResult(){
+
+        Result result = new Result();
+        Result resultPersisted = resultServices.saveResult(result);
+        resultServices.deleteResult(resultPersisted.getId());
+    }
+
+    @Test
     public void findAll(){
 
         resultServices.findAll();

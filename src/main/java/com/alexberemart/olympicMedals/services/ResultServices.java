@@ -17,6 +17,11 @@ public class ResultServices {
         return resultDAO.makePersistent(result);
     }
 
+    public void deleteResult(String id){
+        Result result = resultDAO.getById(id, false);
+        resultDAO.makeTransient(result);
+    }
+
     public List<Result> findAll(){
         return resultDAO.findAll();
     }

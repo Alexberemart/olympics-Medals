@@ -7,13 +7,9 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -34,6 +30,13 @@ public class ResultService extends AbstractRestService {
     public Response saveResult(JsonNode jsonNode) throws Exception {
         final Result result = new ObjectMapper().readValue(jsonNode, new TypeReference<Result>() {});
         return ok(resultServices.saveResult(result));
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response deleteResult(@PathParam("id") String id) throws Exception {
+        resultServices.deleteResult(id);
+        return ok("");
     }
 
 }
