@@ -64,18 +64,18 @@
             self.selected = angular.isNumber(user) ? $scope.users[user] : user;
         }
 
-        function init () {
-            resultService
-                .loadAllMedals()
-                .then(function (results) {
-                    results.forEach(function(element){
-                        resultService.addResult(element);
-                    });
-                    self.loadResults();
-                });
-        }
-
-        init();
+        // function init () {
+        //     resultService
+        //         .loadAllMedals()
+        //         .then(function (results) {
+        //             results.forEach(function(element){
+        //                 resultService.addResult(element);
+        //             });
+        //             self.loadResults();
+        //         });
+        // }
+        //
+        // init();
 
         self.showAdvanced = function (ev) {
             $mdDialog.show({
