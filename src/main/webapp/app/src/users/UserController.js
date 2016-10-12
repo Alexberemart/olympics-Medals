@@ -239,6 +239,7 @@
 
         $scope.addItem = function (ev) {
             $scope.isMedalOnEdit = true;
+            $scope.medalOnEdit = {};
         };
 
         $scope.querySearch = function (searchText) {
