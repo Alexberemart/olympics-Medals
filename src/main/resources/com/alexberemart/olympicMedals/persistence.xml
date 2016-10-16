@@ -93,4 +93,24 @@
         </property>
     </bean>
 
+    <bean id="countryDAOTarget"
+          class="com.alexberemart.olympicMedals.model.dao.impl.CountryDAOImpl">
+        <qualifier value="target"/>
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="countryDAO"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManagerTpv"/>
+        <property name="target">
+            <ref local="countryDAOTarget"/>
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="makePersistent">PROPAGATION_REQUIRED</prop>
+                <prop key="find*">PROPAGATION_REQUIRED, readOnly</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>

@@ -43,7 +43,7 @@
 
         self.loadResults();
 
-        $scope.$on("reloadResults", function(){
+        $scope.$on("reloadResults", function () {
             self.loadResults();
         });
 
@@ -67,13 +67,12 @@
         }
 
         // function init () {
-        //     resultService
-        //         .loadAllMedals()
-        //         .then(function (results) {
-        //             results.forEach(function(element){
-        //                 resultService.addResult(element);
+        //     countryService
+        //         .getCountries()
+        //         .then(function (countries) {
+        //             countries.forEach(function(element){
+        //                 countryService.saveCountry(element);
         //             });
-        //             self.loadResults();
         //         });
         // }
         //
@@ -89,51 +88,9 @@
                 fullscreen: false
             })
                 .then(function (result) {
-                    // result.male = true;
-                    // result.female = true;
-                    // result.medals = [
-                    //     {
-                    //         medalId: 1,
-                    //         name: 'Ku Bon-chan',
-                    //         countryId: 12
-                    //     },
-                    //     {
-                    //         medalId: 2,
-                    //         name: 'Jean-Charles Valladont',
-                    //         countryId: 4
-                    //     },
-                    //     {
-                    //         medalId: 3,
-                    //         name: 'Brady Ellison',
-                    //         countryId: 2
-                    //     }
-                    // ];
-                    // result = {
-                    //     sport: 'Archery',
-                    //     event: 'Men\'s individual',
-                    //     male: true,
-                    //     female: false,
-                    //     medals: [
-                    //         {
-                    //             medalId: 1,
-                    //             name: 'Ku Bon-chan',
-                    //             countryId: 12
-                    //         },
-                    //         {
-                    //             medalId: 2,
-                    //             name: 'Jean-Charles Valladont',
-                    //             countryId: 4
-                    //         },
-                    //         {
-                    //             medalId: 3,
-                    //             name: 'Brady Ellison',
-                    //             countryId: 2
-                    //         }
-                    //     ]
-                    // };
                     console.log(result);
                     resultService.addResult(result)
-                        .then(function(){
+                        .then(function () {
                             self.loadResults();
                         })
                 }, function () {
@@ -197,22 +154,6 @@
         $scope.medalOnEdit = {};
         $scope.athletes = [];
 
-        // $scope.athletes = [
-        //     {
-        //         medal: {
-        //             id: 1,
-        //             name: 'Gold',
-        //             imageUrl: 'app/images/pict--olympic-medal,-gold-winter-olympics-pictograms-vector-stencils-library.png'
-        //         },
-        //         name: 'Usain Bolt',
-        //         country: {
-        //             id: 12,
-        //             name: 'South Korea',
-        //             flagUrl: 'app/images/SKOR0001.gif'
-        //         }
-        //     }
-        // ];
-
         $scope.hide = function () {
             $mdDialog.hide();
         };
@@ -243,16 +184,19 @@
         };
 
         $scope.querySearch = function (searchText) {
-            var countries = countryService.getCountries();
-
-            if (!!searchText) {
-                return countries.filter(function (element) {
-                    return element.name.includes(searchText);
-                });
-            }
-            else {
-                return countries;
-            }
+            return countryService
+                .getCountries()
+                .then(function (data) {
+                    var countries = data.data;
+                    if (!!searchText) {
+                        return countries.filter(function (element) {
+                            return element.name.includes(searchText);
+                        });
+                    }
+                    else {
+                        return countries;
+                    }
+                })
         };
 
         $scope.saveNewMedal = function () {

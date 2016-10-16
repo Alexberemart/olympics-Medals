@@ -13,6 +13,12 @@ angular.module('users')
              */
             SAVE_RESULT: function () {
                 return prefix + '/result';
+            },
+            /**
+             * @return {string}
+             */
+            SAVE_COUNTRY: function () {
+                return prefix + '/country';
             }
         };
     });
