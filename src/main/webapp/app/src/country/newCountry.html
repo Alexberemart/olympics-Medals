@@ -1,0 +1,43 @@
+<md-dialog
+        aria-label="New Country">
+
+    <div ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New Country</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon="fa-times" class="fa" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+
+            <div class="md-dialog-content">
+
+                <form>
+                    <div layout="row">
+                        <md-input-container flex="50">
+                            <label>Name</label>
+                            <input ng-model="countryOnEdit.name">
+                        </md-input-container>
+                        <md-input-container flex="50">
+                            <label>Flag</label>
+                            <input ng-model="countryOnEdit.flagFileName">
+                        </md-input-container>
+                    </div>
+                </form>
+
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="save()" ng-disabled="searchForm.$invalid">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </div>
+</md-dialog>

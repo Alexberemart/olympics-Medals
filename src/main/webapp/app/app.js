@@ -47,6 +47,15 @@ angular
                     }
                 }
             })
+            .state('dashboard.countries', {
+                url: '/countries',
+                views: {
+                    dashboardContent: {
+                        templateUrl: 'app/src/country/countries.html',
+                        controller: 'countryCtrl'
+                    }
+                }
+            })
 
         $urlRouterProvider.otherwise('/dashboard/main');
 
