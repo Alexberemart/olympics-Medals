@@ -10,62 +10,62 @@
             {
                 id : 1,
                 name: 'Jamaica',
-                flagFileName: 'app/images/JAMA0001.GIF'
+                flagFileName: 'JAMA0001.GIF'
             },
             {
                 id : 2,
                 name: 'United States',
-                flagFileName: 'app/images/UNST0001.GIF'
+                flagFileName: 'UNST0001.GIF'
             },
             {
                 id : 3,
                 name: 'Canada',
-                flagFileName: 'app/images/CANA0001.GIF'
+                flagFileName: 'CANA0001.GIF'
             },
             {
                 id : 4,
                 name: 'France',
-                flagFileName: 'app/images/FRAN0001.GIF'
+                flagFileName: 'FRAN0001.GIF'
             },
             {
                 id : 5,
                 name: 'Russian Federation',
-                flagFileName: 'app/images/RUSS0001.GIF'
+                flagFileName: 'RUSS0001.GIF'
             },
             {
                 id : 6,
                 name: 'Kazakhstan',
-                flagFileName: 'app/images/KAZK0001.GIF'
+                flagFileName: 'KAZK0001.GIF'
             },
             {
                 id : 7,
                 name: 'Japan',
-                flagFileName: 'app/images/JAPA0001.GIF'
+                flagFileName: 'JAPA0001.GIF'
             },
             {
                 id : 8,
                 name: 'Uzbekistan',
-                flagFileName: 'app/images/UZBK0001.GIF'
+                flagFileName: 'UZBK0001.GIF'
             },
             {
                 id : 9,
                 name: 'Denmark',
-                flagFileName: 'app/images/DENM0001.GIF'
+                flagFileName: 'DENM0001.GIF'
             },
             {
                 id : 10,
                 name: 'Belarus',
-                flagFileName: 'app/images/BLRU0001.GIF'
+                flagFileName: 'BLRU0001.GIF'
             },
             {
                 id : 11,
                 name: 'Sweden',
-                flagFileName: 'app/images/SWDN0001.GIF'
+                flagFileName: 'SWDN0001.GIF'
             },
             {
                 id : 12,
                 name: 'South Korea',
-                flagFileName: 'app/images/SKOR0001.GIF'
+                flagFileName: 'SKOR0001.GIF'
             }
         ];
 
