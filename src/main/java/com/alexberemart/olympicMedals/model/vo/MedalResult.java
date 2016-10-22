@@ -28,7 +28,7 @@ public class MedalResult extends BaseEntity {
         this.result = result;
     }
 
-    protected Integer countryId;
+    protected String countryId;
 
     public Integer getMedalId() {
         return medalId;
@@ -46,11 +46,11 @@ public class MedalResult extends BaseEntity {
         this.name = name;
     }
 
-    public Integer getCountryId() {
+    public String getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(Integer countryId) {
+    public void setCountryId(String countryId) {
         this.countryId = countryId;
     }
 }
