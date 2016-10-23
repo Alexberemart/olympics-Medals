@@ -2,25 +2,23 @@
 
     angular
         .module('users')
-        .controller('UserController', [
+        .controller('mainCtrl', [
             '$scope', 'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog', 'genderService', 'countryService',
-            UserController
+            mainCtrl
         ]);
 
     angular
         .module('users')
         .filter('resultFilter', resultFilter);
 
-    function UserController($scope, resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService, countryService) {
-        var self = this;
-
-        self.selected = null;
-        self.users = [];
-        self.selectUser = selectUser;
-        self.toggleList = toggleUsersList;
-        self.maleResults = false;
-        self.genderValues = genderService.getGenderValues();
-        self.selectedGenderId = self.genderValues[0].id;
+    function mainCtrl($scope, resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService, countryService) {
+        $scope.selected = null;
+        $scope.users = [];
+        $scope.selectUser = selectUser;
+        $scope.toggleList = toggleUsersList;
+        $scope.maleResults = false;
+        $scope.genderValues = genderService.getGenderValues();
+        $scope.selectedGenderId = $scope.genderValues[0].id;
 
         // Load all registered users
 
@@ -28,23 +26,23 @@
         resultService
             .loadAllUsers()
             .then(function (users) {
-                self.users = [].concat(users);
-                self.selected = users[0];
+                $scope.users = [].concat(users);
+                $scope.selected = users[0];
             });
 
 
-        self.loadResults = function () {
+        $scope.loadResults = function () {
             resultService
                 .loadAllResults()
                 .then(function (medals) {
-                    self.medals = [].concat(medals.data);
+                    $scope.medals = [].concat(medals.data);
                 });
         };
 
-        self.loadResults();
+        $scope.loadResults();
 
         $scope.$on("reloadResults", function () {
-            self.loadResults();
+            $scope.loadResults();
         });
 
         // *********************************
@@ -63,7 +61,7 @@
          * @param menuId
          */
         function selectUser(user) {
-            self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+            $scope.selected = angular.isNumber(user) ? $scope.users[user] : user;
         }
 
         // function init () {
@@ -78,7 +76,7 @@
         //
         // init();
 
-        self.showAdvanced = function (ev) {
+        $scope.showAdvanced = function (ev) {
             $mdDialog.show({
                 controller: newResultCtrl,
                 templateUrl: 'app/src/result/results.html',
@@ -91,10 +89,10 @@
                     console.log(result);
                     resultService.addResult(result)
                         .then(function () {
-                            self.loadResults();
+                            $scope.loadResults();
                         })
                 }, function () {
-                    self.status = 'You cancelled the dialog.';
+                    $scope.status = 'You cancelled the dialog.';
                 });
         };
 

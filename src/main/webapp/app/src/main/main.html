@@ -1,26 +1,26 @@
 <md-content flex layout="column" id="content">
 
     <!--<md-content flex layout="row">-->
-    <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-    <h2>{{ul.selected.name}}</h2>
+    <md-icon md-svg-icon="{{selected.avatar}}" class="avatar"></md-icon>
+    <h2>{{selected.name}}</h2>
     <!--</md-content>-->
 
-    <p>{{ul.selected.content}}</p>
+    <p>{{selected.content}}</p>
     <form ng-submit="$event.preventDefault()" name="searchForm">
 
         <!--<pre>{{searchForm | json}}</pre>-->
 
         <sport-autocomplete
-                selected-item="ul.selectedItem"
-                search-text="ul.searchText"
+                selected-item="selectedItem"
+                search-text="searchText"
                 sport-autocomplete-label="Sport Filter"
                 sport-autocomplete-required="false"
         ></sport-autocomplete>
 
-        <md-radio-group ng-model="ul.selectedGenderId">
+        <md-radio-group ng-model="selectedGenderId">
 
             <md-radio-button class="md-2-line"
-                             ng-repeat="genderValue in ul.genderValues"
+                             ng-repeat="genderValue in genderValues"
                              value="{{genderValue.id}}"
                              ng-class="{'md-primary' : genderValue.primary}">
                 {{genderValue.name}}
@@ -30,9 +30,9 @@
 
         <md-divider md-inset></md-divider>
 
-        <!--<PRE>{{ul.selectedItem}}</PRE>-->
-        <!--<PRE>{{ul.searchText}}</PRE>-->
-        <!--<PRE>{{ul.noCache}}</PRE>-->
+        <!--<PRE>{{selectedItem}}</PRE>-->
+        <!--<PRE>{{searchText}}</PRE>-->
+        <!--<PRE>{{noCache}}</PRE>-->
         <!--<PRE>{{searchForm.autocompleteField.$error}}</PRE>-->
         <!--<PRE>{{searchForm.autocompleteField.$error.required}}</PRE>-->
         <!--<PRE>{{searchForm.autocompleteField.$touched}}</PRE>-->
@@ -41,13 +41,13 @@
     <md-list>
         <div layout="column" layout-gt-md="row" layout-wrap>
             <md-list-item class="md-2-line"
-                          ng-repeat="resultInfo in ul.medals | resultFilter:ul.searchText:ul.selectedGenderId:ul.genderValues">
+                          ng-repeat="resultInfo in medals | resultFilter:searchText:selectedGenderId:genderValues">
                 <result-directive result="resultInfo"></result-directive>
             </md-list-item>
         </div>
     </md-list>
 
-    <md-button class="md-fab addNew" aria-label="Eat cake" ng-click="ul.showAdvanced($event)">
+    <md-button class="md-fab addNew" aria-label="Eat cake" ng-click="showAdvanced($event)">
         <md-icon md-font-icon="fa-plus" class="fa"></md-icon>
     </md-button>
 

@@ -33,8 +33,8 @@ angular
                 url: '/main',
                 views: {
                     dashboardContent: {
-                        templateUrl: 'app/src/main/head-menu.html',
-                        controller: 'head-menu'
+                        templateUrl: 'app/src/main/main.html',
+                        controller: 'mainCtrl'
                     }
                 }
             })
