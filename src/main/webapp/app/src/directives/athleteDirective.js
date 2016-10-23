@@ -15,7 +15,10 @@
                 scope.getMedal = function(){
                     return medalService.getImageUrl(this.medal.medalId);
                 };
-                scope.country = countryService.getCountry(parseInt(scope.medal.countryId));
+                countryService.getCountry(scope.medal.countryId)
+                    .then(function(data){
+                        scope.country = data.data;
+                    });
                 scope.medalInfo = medalService.getMedal(scope.medal.medalId);
             }
         };

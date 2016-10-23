@@ -72,9 +72,10 @@
         // Promise-based API
         return {
             getCountry: function (countryId) {
-                return countries.filter(function(element){
-                    return element.id === countryId
-                })[0];
+                // return countries.filter(function(element){
+                //     return element.id === countryId
+                // })[0];
+                return $http.get(urlConstantsFact.SAVE_COUNTRY() + '/' + countryId);
             },
             getCountries: function(){
                 return $http.get(urlConstantsFact.SAVE_COUNTRY());
