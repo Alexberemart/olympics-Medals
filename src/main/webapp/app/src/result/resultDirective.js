@@ -10,7 +10,7 @@
             scope: {
                 result: '=result'
             },
-            templateUrl: 'app/src/directives/resultDirective.html',
+            templateUrl: 'app/src/result/resultDirective.html',
             link: function(scope) {
                 scope.deleteResult = function(result){
                     resultService.deleteResult(result)
