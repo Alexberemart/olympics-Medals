@@ -3,7 +3,7 @@
     angular
         .module('olympic-medals')
         .controller('mainCtrl', [
-            '$scope', 'resultService', '$mdSidenav', '$mdDialog', 'genderService',
+            '$scope', 'resultService', '$mdSidenav', '$mdDialog', 'genderService', '$rootScope',
             mainCtrl
         ]);
 
@@ -11,7 +11,7 @@
         .module('olympic-medals')
         .filter('resultFilter', resultFilter);
 
-    function mainCtrl($scope, resultService, $mdSidenav, $mdDialog, genderService) {
+    function mainCtrl($scope, resultService, $mdSidenav, $mdDialog, genderService, $rootScope) {
         $scope.selected = null;
         $scope.maleResults = false;
         $scope.genderValues = genderService.getGenderValues();
@@ -27,11 +27,7 @@
 
         $scope.loadResults();
 
-        $scope.$on("reloadResults", function () {
-            $scope.loadResults();
-        });
-
-        $scope.$on("changeUser", function (user) {
+        $rootScope.$on("changeUser", function (event, user) {
             $scope.selected = angular.isNumber(user) ? $scope.users[user] : user;
         });
 

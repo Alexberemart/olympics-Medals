@@ -1,6 +1,6 @@
 angular.module('olympic-medals')
     .controller('head-menu',
-        function ($scope, resultService, $mdSidenav) {
+        function ($scope, resultService, $mdSidenav, $rootScope) {
 
             $scope.users = [];
             $scope.selectUser = selectUser;
@@ -18,7 +18,7 @@ angular.module('olympic-medals')
              * @param menuId
              */
             function selectUser(user) {
-                $scope.$broadcast("changeUser", user)
+                $rootScope.$emit("changeUser", user);
             }
 
             /**
