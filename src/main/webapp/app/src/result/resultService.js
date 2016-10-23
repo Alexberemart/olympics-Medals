@@ -18,13 +18,13 @@
             {
                 value: 'lia lugo',
                 name: 'Rio 2016',
-                avatar: 'svg-1',
+                avatar: 'app/images/2016_Summer_Olympics_logo.png',
                 content: 'contenido de rio 2016'
             },
             {
                 value: 'george duke',
                 name: 'London 2012',
-                avatar: 'svg-2',
+                avatar: 'app/images/london-2012-olympics-logo.jpg',
                 content: 'contenido de rio 2016'
             }
         ];
