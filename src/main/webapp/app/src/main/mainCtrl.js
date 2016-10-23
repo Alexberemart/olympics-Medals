@@ -3,7 +3,7 @@
     angular
         .module('users')
         .controller('mainCtrl', [
-            '$scope', 'resultService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$q', '$filter', '$mdDialog', 'genderService', 'countryService',
+            '$scope', 'resultService', '$mdSidenav', '$mdDialog', 'genderService',
             mainCtrl
         ]);
 
@@ -11,7 +11,7 @@
         .module('users')
         .filter('resultFilter', resultFilter);
 
-    function mainCtrl($scope, resultService, $mdSidenav, $mdBottomSheet, $timeout, $log, $q, $filter, $mdDialog, genderService, countryService) {
+    function mainCtrl($scope, resultService, $mdSidenav, $mdDialog, genderService) {
         $scope.selected = null;
         $scope.users = [];
         $scope.selectUser = selectUser;
