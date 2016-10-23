@@ -1,5 +1,5 @@
 angular
-    .module('starterApp', ['ui.router', 'ngMaterial', 'ngMessages', 'users', 'countries', 'medals'])
+    .module('starterApp', ['ui.router', 'ngMaterial', 'ngMessages', 'olympic-medals', 'countries', 'medals'])
     .config(['$mdThemingProvider', '$mdIconProvider', '$stateProvider', '$urlRouterProvider', function ($mdThemingProvider, $mdIconProvider, $stateProvider, $urlRouterProvider) {
 
         $mdIconProvider

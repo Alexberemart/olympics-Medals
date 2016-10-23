@@ -1,7 +1,7 @@
 (function () {
 
     angular
-        .module('users')
+        .module('olympic-medals')
         .directive('athleteDirective', ['countryService', 'medalService', athleteDirective]);
 
     function athleteDirective(countryService, medalService) {

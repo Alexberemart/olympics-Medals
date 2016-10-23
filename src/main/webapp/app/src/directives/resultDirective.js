@@ -1,7 +1,7 @@
 (function () {
 
     angular
-        .module('users')
+        .module('olympic-medals')
         .directive('resultDirective', ['resultService', resultDirective]);
 
     function resultDirective(resultService) {

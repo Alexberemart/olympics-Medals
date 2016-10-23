@@ -1,4 +1,4 @@
-angular.module('users')
+angular.module('olympic-medals')
     .factory('urlConstantsFact', function () {
 
         //var prefix = 'http://192.168.1.254:8080/HT/Services';

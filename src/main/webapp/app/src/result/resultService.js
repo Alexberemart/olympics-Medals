@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('users')
+    angular.module('olympic-medals')
         .service('resultService', ['$q', 'urlConstantsFact', '$http', resultService]);
 
     /**

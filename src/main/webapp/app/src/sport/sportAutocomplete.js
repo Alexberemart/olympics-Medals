@@ -1,7 +1,7 @@
 (function () {
 
     angular
-        .module('users')
+        .module('olympic-medals')
         .directive('sportAutocomplete', ['resultService', '$q', '$timeout', sportAutocomplete]);
 
     function sportAutocomplete(resultService, $q, $timeout) {

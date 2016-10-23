@@ -1,35 +1,21 @@
 (function () {
 
     angular
-        .module('users')
+        .module('olympic-medals')
         .controller('mainCtrl', [
             '$scope', 'resultService', '$mdSidenav', '$mdDialog', 'genderService',
             mainCtrl
         ]);
 
     angular
-        .module('users')
+        .module('olympic-medals')
         .filter('resultFilter', resultFilter);
 
     function mainCtrl($scope, resultService, $mdSidenav, $mdDialog, genderService) {
         $scope.selected = null;
-        $scope.users = [];
-        $scope.selectUser = selectUser;
-        $scope.toggleList = toggleUsersList;
         $scope.maleResults = false;
         $scope.genderValues = genderService.getGenderValues();
         $scope.selectedGenderId = $scope.genderValues[0].id;
-
-        // Load all registered users
-
-
-        resultService
-            .loadAllUsers()
-            .then(function (users) {
-                $scope.users = [].concat(users);
-                $scope.selected = users[0];
-            });
-
 
         $scope.loadResults = function () {
             resultService
@@ -45,36 +31,13 @@
             $scope.loadResults();
         });
 
+        $scope.$on("changeUser", function (user) {
+            $scope.selected = angular.isNumber(user) ? $scope.users[user] : user;
+        });
+
         // *********************************
         // Internal methods
         // *********************************
-
-        /**
-         * Hide or Show the 'left' sideNav area
-         */
-        function toggleUsersList() {
-            $mdSidenav('left').toggle();
-        }
-
-        /**
-         * Select the current avatars
-         * @param menuId
-         */
-        function selectUser(user) {
-            $scope.selected = angular.isNumber(user) ? $scope.users[user] : user;
-        }
-
-        // function init () {
-        //     countryService
-        //         .getCountries()
-        //         .then(function (countries) {
-        //             countries.forEach(function(element){
-        //                 countryService.saveCountry(element);
-        //             });
-        //         });
-        // }
-        //
-        // init();
 
         $scope.showAdvanced = function (ev) {
             $mdDialog.show({
