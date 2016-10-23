@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="app/components/bower/font-awesome/css/font-awesome.min.css">
 
     <!-- style sheet -->
-    <link href="app/components/bower/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css">
+    <link href="app/components/bower/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet"
+          type="text/css">
 
     <style type="text/css">
         /**
@@ -31,56 +32,59 @@
 <body ng-app="starterApp" ng-cloak layout="column">
 <!-- Container #1 (see wireframe) -->
 <md-toolbar layout="row">
-    <h1 style="padding: 10px">Olympic-Medals</h1>
+    <h1 style="padding: 10px" flex="90">Olympic-Medals</h1>
+    <md-button ui-sref="dashboard.countries" flex="10" style="padding: 20px;">
+        <md-icon class="fa" md-font-icon="fa fa-cog"></md-icon>
+    </md-button>
 </md-toolbar>
 
 <!-- Container #2 -->
 <md-content flex layout="row">
-<md-content flex layout="row">
+    <md-content flex layout="row">
 
-    <div ui-view="head"></div>
-    <div ui-view="content" class="main-content-view"></div>
+        <div ui-view="head"></div>
+        <div ui-view="content" class="main-content-view"></div>
 
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="app/components/bower/angular/angular.min.js"></script>
-    <script src="app/components/bower/angular-animate/angular-animate.min.js"></script>
-    <script src="app/components/bower/angular-aria/angular-aria.min.js"></script>
-    <script src="app/components/bower/angular-messages/angular-messages.min.js"></script>
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="app/components/bower/angular/angular.min.js"></script>
+        <script src="app/components/bower/angular-animate/angular-animate.min.js"></script>
+        <script src="app/components/bower/angular-aria/angular-aria.min.js"></script>
+        <script src="app/components/bower/angular-messages/angular-messages.min.js"></script>
 
-    <!-- Angular Material Library -->
-    <script src="app/components/bower/angular-material/angular-material.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="app/components/bower/angular-material/angular-material.min.js"></script>
 
-    <script src="app/components/bower/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="app/components/bower/angular-ui-router/release/angular-ui-router.js"></script>
 
-    <script src="app/src/main/olympic-medals.js"></script>
-    <script src="app/src/main/mainCtrl.js"></script>
+        <script src="app/src/main/olympic-medals.js"></script>
+        <script src="app/src/main/mainCtrl.js"></script>
 
-    <script src="app/src/result/resultService.js"></script>
-    <script src="app/src/result/resultDirective.js"></script>
+        <script src="app/src/result/resultService.js"></script>
+        <script src="app/src/result/resultDirective.js"></script>
 
-    <script src="app/src/athlete/athleteDirective.js"></script>
+        <script src="app/src/athlete/athleteDirective.js"></script>
 
-    <script src="app/src/country/countries.js"></script>
-    <script src="app/src/country/countryService.js"></script>
-    <script src="app/src/country/countryWithFlag.js"></script>
-    <script src="app/src/country/countryCtrl.js"></script>
+        <script src="app/src/country/countries.js"></script>
+        <script src="app/src/country/countryService.js"></script>
+        <script src="app/src/country/countryWithFlag.js"></script>
+        <script src="app/src/country/countryCtrl.js"></script>
 
-    <script src="app/src/medal/medals.js"></script>
-    <script src="app/src/medal/medalService.js"></script>
-    <script src="app/src/medal/medalWithImage.js"></script>
+        <script src="app/src/medal/medals.js"></script>
+        <script src="app/src/medal/medalService.js"></script>
+        <script src="app/src/medal/medalWithImage.js"></script>
 
-    <script src="app/src/common/common.js"></script>
-    <script src="app/src/common/genderService.js"></script>
-    <script src="app/src/common/urlConstantsFact.js"></script>
+        <script src="app/src/common/common.js"></script>
+        <script src="app/src/common/genderService.js"></script>
+        <script src="app/src/common/urlConstantsFact.js"></script>
 
-    <script src="app/src/sport/sportAutocomplete.js"></script>
+        <script src="app/src/sport/sportAutocomplete.js"></script>
 
-    <script src="app/src/head-menu/head-menu.js"></script>
+        <script src="app/src/head-menu/head-menu.js"></script>
 
-    <script src="app/components/bower/angular-material-data-table/dist/md-data-table.min.js"></script>
+        <script src="app/components/bower/angular-material-data-table/dist/md-data-table.min.js"></script>
 
-    <script src="app/app.js"></script>
+        <script src="app/app.js"></script>
 
-</md-content>
+    </md-content>
 </body>
 </html>
