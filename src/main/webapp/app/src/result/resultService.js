@@ -64,8 +64,6 @@
                 return $http.get(urlConstantsFact.SAVE_RESULT());
             },
             addResult: function(result){
-                results.push(result);
-
                 var resultToSave = {
                     sport: result.sport,
                     event: result.event,
