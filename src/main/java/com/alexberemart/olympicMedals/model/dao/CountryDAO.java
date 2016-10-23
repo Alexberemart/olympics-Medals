@@ -5,4 +5,6 @@ import com.alexberemart.olympicMedals.model.vo.Country;
 
 public interface CountryDAO extends GenericHibernateDAO<Country, String> {
 
+    Country getCountry(String id);
+
 }

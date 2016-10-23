@@ -23,12 +23,18 @@ public class CountryService extends AbstractRestService {
     CountryServices countryServices;
 
     @GET
-    public Response getResults() throws Exception {
+    public Response findAll() throws Exception {
         return ok(countryServices.findAll());
     }
 
+    @GET
+    @Path("{id}")
+    public Response getCountry(@PathParam("id") String countryId) throws Exception {
+        return ok(countryServices.getCountry(countryId));
+    }
+
     @POST
-    public Response saveResult(JsonNode jsonNode) throws Exception {
+    public Response saveCountry(JsonNode jsonNode) throws Exception {
         final Country country = new ObjectMapper().readValue(jsonNode, new TypeReference<Country>() {});
         return ok(countryServices.saveCountry(country));
     }

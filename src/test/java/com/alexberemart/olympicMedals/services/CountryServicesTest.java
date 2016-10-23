@@ -23,4 +23,9 @@ public class CountryServicesTest extends AbstractOlympicMedalsTest {
         countryServices.findAll();
     }
 
+    @Test
+    public void getCountry(){
+        countryServices.getCountry("1");
+    }
+
 }

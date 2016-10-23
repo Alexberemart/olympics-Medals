@@ -21,4 +21,8 @@ public class CountryServices {
         return countryDAO.makePersistent(country);
     }
 
+    public Country getCountry(String id){
+        return countryDAO.getCountry(id);
+    }
+
 }
